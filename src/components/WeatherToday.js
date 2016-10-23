@@ -6,14 +6,11 @@ import * as actions from '../actions';
 
 class WeatherToday extends Component {
   componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => this.props.fetchLocation(coords),
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
+    this.props.fetchLocation();
   }
 
   render() {
+    console.log('propsit', this.props.geolocation);
     return (
       <Text>I am weather today</Text>
     );

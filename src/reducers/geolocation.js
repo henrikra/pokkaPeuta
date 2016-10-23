@@ -7,11 +7,11 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case types.FETCH_LOCATION:
+    case types.RECEIVE_LOCATION:
       return {
         ...state, 
-        longitude: action.coordinates.longitude,
-        latitude: action.coordinates.latitude,
+        longitude: action.coords.longitude,
+        latitude: action.coords.latitude,
       };
     default:
       return state;
