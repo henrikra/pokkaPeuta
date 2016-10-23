@@ -1,27 +1,5 @@
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry } from 'react-native';
 
-export default class pokkaPeuta extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Pokka Peuta</Text>
-      </View>
-    );
-  }
-}
+import App from './src/components/App';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-
-AppRegistry.registerComponent('pokkaPeuta', () => pokkaPeuta);
+AppRegistry.registerComponent('pokkaPeuta', () => App);
