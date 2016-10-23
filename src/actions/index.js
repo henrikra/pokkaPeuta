@@ -13,9 +13,12 @@ export function fetchLocation(coordinates) {
 
         fetch(`http://api.openweathermap.org/data/2.5/forecast?appid=${config.apiKey}&units=metric&lat=${coords.latitude}&lon=${coords.longitude}`)
           .then((response) => response.json())
-          .then((responseJson) => {
-            console.log('vastaus', responseJson)
-            return responseJson;
+          .then((forecast) => {
+            dispatch({
+              type: types.RECEIVE_FORECAST,
+              forecast,
+            })
+            return forecast;
           })
           .catch((error) => {
             console.error(error);
