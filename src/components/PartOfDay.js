@@ -16,13 +16,27 @@ const getBackgroundColor = (title) => {
   }
 }
 
+const getTemperature = (temperature) => {
+  const roundedTemperature = Math.round(temperature);
+  
+  if (roundedTemperature > 0) {
+    return `+ ${roundedTemperature}`;
+  }
+  else if (roundedTemperature < 0 ) {
+    return `- ${roundedTemperature}`;
+  }
+  else {
+    return roundedTemperature;
+  }
+};
+
 const PartOfDay = ({ title, partOfDay }) => {
   return (
     <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title) }}>
       <View style={styles.imageContainer}><Text>lol</Text></View>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{title.toUpperCase()}</Text>
-        <Text style={styles.temperatures}>{Math.round(partOfDay.main.temp)}</Text>
+        <Text style={styles.temperatures}>{getTemperature(partOfDay.main.temp)}</Text>
       </View>
     </View>
   );
