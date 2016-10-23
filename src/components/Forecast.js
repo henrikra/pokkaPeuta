@@ -5,10 +5,15 @@ import moment from 'moment';
 
 import PartOfDay from './PartOfDay';
 
-const Forecast = ({ forecast }) => {
-  const isAfterToday = moment(_.first(forecast).dt * 1000).isAfter(moment().set({ hour: 23, minute: 59, second: 59 }));
+const isAfterToday = (forecast) => {
+  const forecastDate = _.first(forecast).dt * 1000; 
+  const lastSecondOfToday = moment().set({ hour: 23, minute: 59, second: 59 });
 
-  if (isAfterToday) {
+  return moment(forecastDate).isAfter(lastSecondOfToday);
+}
+
+const Forecast = ({ forecast }) => {
+  if (isAfterToday(forecast)) {
     return null;
   }
 
