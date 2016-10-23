@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import types from '../constants/actionTypes';
 
 const initialState = {};
@@ -5,10 +7,11 @@ const initialState = {};
 export default function(state = initialState, action) {
   switch (action.type) {
     case types.RECEIVE_FORECAST:
-      console.log('new forecast', action);
-      return {
-        ...state, 
-      };
+      const forecastGroupedByDate = _.groupBy(action.forecast.list, (forecast) =>
+        forecast.dt_txt.split(' ').shift()
+      );
+      
+      return forecastGroupedByDate;
     default:
       return state;
   }
