@@ -1,10 +1,17 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import _ from 'lodash';
+import moment from 'moment';
 
 import PartOfDay from './PartOfDay';
 
 const Forecast = ({ forecast }) => {
+  const isAfterToday = moment(_.first(forecast).dt * 1000).isAfter(moment().set({ hour: 23, minute: 59, second: 59 }));
+
+  if (isAfterToday) {
+    return null;
+  }
+
   const morning = forecast.find((every3Hour) => every3Hour.dt_txt.split(' ').pop() === '06:00:00');
   const day = forecast.find((every3Hour) => every3Hour.dt_txt.split(' ').pop() === '12:00:00');
   const evening = forecast.find((every3Hour) => every3Hour.dt_txt.split(' ').pop() === '18:00:00');
