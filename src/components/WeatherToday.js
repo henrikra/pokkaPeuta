@@ -10,9 +10,12 @@ class WeatherToday extends Component {
   }
 
   render() {
-    console.log('propsit', this.props.geolocation);
     return (
-      <Text>I am weather today</Text>
+      <View>
+        <Text>My current location</Text>
+        <Text>Longitude: {this.props.geolocation.longitude}</Text>
+        <Text>Latitude: {this.props.geolocation.latitude}</Text>
+      </View>
     );
   }
 };
