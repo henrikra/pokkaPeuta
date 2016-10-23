@@ -12,15 +12,12 @@ class WeatherToday extends Component {
   }
 
   render() {
-    const forecasts = _.map(this.props.forecast, (forecast, index) => {
-      return <Forecast key={index} forecast={forecast} />;
-    })
+    const forecasts = _.map(this.props.forecast, (forecast, index) =>
+      <Forecast key={index} forecast={forecast} />
+    );
 
     return (
       <View>
-        <Text>My current location</Text>
-        <Text>Longitude: {this.props.geolocation.longitude}</Text>
-        <Text>Latitude: {this.props.geolocation.latitude}</Text>
         {forecasts}
       </View>
     );
