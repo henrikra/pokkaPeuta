@@ -7,7 +7,7 @@ import * as actions from '../actions';
 class WeatherToday extends Component {
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
-      (position) => this.props.fetchLocation(position.coords),
+      ({ coords }) => this.props.fetchLocation(coords),
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
