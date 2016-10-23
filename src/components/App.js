@@ -5,13 +5,19 @@ import {
   Text,
   View
 } from 'react-native';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import reducers from '../reducers';
 
 export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Pokka Peuta</Text>
-      </View>
+      <Provider store={createStore(reducers)}>
+        <View style={styles.container}>
+          <Text>Pokka Peuta</Text>
+        </View>
+      </Provider>
     );
   }
 }
