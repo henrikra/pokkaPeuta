@@ -1,7 +1,8 @@
-import { FETCH_LOCATION } from '../constants/actionTypes';
+import types from '../constants/actionTypes';
 
-export function fetchLocation() {
+export function fetchLocation(coordinates) {
   return {
-    type: FETCH_LOCATION
+    type: types.FETCH_LOCATION,
+    coordinates,
   }; 
 }
