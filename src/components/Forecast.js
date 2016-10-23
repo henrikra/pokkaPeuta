@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import _ from 'lodash';
 
+import PartOfDay from './PartOfDay';
+
 const Forecast = ({ forecast }) => {
   const morning = forecast.find((every3Hour) => every3Hour.dt_txt.split(' ').pop() === '06:00:00');
   const day = forecast.find((every3Hour) => every3Hour.dt_txt.split(' ').pop() === '12:00:00');
@@ -10,12 +12,10 @@ const Forecast = ({ forecast }) => {
 
   return (
     <View>
-      {morning && (
-        <View>
-          <Text>Morning</Text>
-          <Text>{morning.main.temp}</Text>
-        </View>
-      )}
+      {morning && <PartOfDay title="Morning" partOfDay={morning} />}
+      {day && <PartOfDay title="Day" partOfDay={day} />}
+      {evening && <PartOfDay title="Evening" partOfDay={evening} />}
+      {night && <PartOfDay title="Night" partOfDay={night} />}
     </View>
   );
 };
