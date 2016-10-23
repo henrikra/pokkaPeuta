@@ -1,0 +1,3 @@
+rootProject.name = 'pokkaPeuta'
+
+include ':app'
