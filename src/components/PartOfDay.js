@@ -56,10 +56,14 @@ const getIcon = (weather) => {
       return require("../images/Cloud-Rain.svg");
     case ICONS.nightRain:
       return require("../images/Cloud-Rain-Moon.svg");
+    case ICONS.dayRain:
+      return require("../images/Cloud-Rain.svg");
     case ICONS.nightFewClouds:
       return require("../images/Cloud-Moon.svg");
     case ICONS.nightClearSky:
       return require("../images/Moon.svg");
+    case ICONS.nightBrokenClouds:
+      return require("../images/Cloud.svg");
     default:
       return require('../images/Sun.svg');
   }
