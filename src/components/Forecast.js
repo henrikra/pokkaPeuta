@@ -6,10 +6,24 @@ import moment from 'moment';
 import PartOfDay from './PartOfDay';
 
 const isAfterToday = (forecast) => {
-  const forecastDate = _.first(forecast).dt * 1000; 
   const lastSecondOfToday = moment().set({ hour: 23, minute: 59, second: 59 });
 
-  return moment(forecastDate).isAfter(lastSecondOfToday);
+  return moment(forecast.date).isAfter(lastSecondOfToday);
+}
+
+const getTitle = (lollero) => {
+  const time = lollero.dt_txt.split(' ').pop()
+
+  switch (time) {
+    case '00:00:00':
+      return "Night";
+    case '06:00:00':
+      return "Morning";
+    case '12:00:00':
+      return "Day";
+    case '18:00:00':
+      return "Evening";
+  }
 }
 
 const Forecast = ({ forecast }) => {
@@ -17,17 +31,11 @@ const Forecast = ({ forecast }) => {
     return null;
   }
 
-  const morning = forecast.find((every3Hour) => every3Hour.dt_txt.split(' ').pop() === '06:00:00');
-  const day = forecast.find((every3Hour) => every3Hour.dt_txt.split(' ').pop() === '12:00:00');
-  const evening = forecast.find((every3Hour) => every3Hour.dt_txt.split(' ').pop() === '18:00:00');
-  const night = forecast.find((every3Hour) => every3Hour.dt_txt.split(' ').pop() === '00:00:00');
-
   return (
-    <View>
-      {morning && <PartOfDay title="Morning" partOfDay={morning} />}
-      {day && <PartOfDay title="Day" partOfDay={day} />}
-      {evening && <PartOfDay title="Evening" partOfDay={evening} />}
-      {night && <PartOfDay title="Night" partOfDay={night} />}
+    <View style={{ borderWidth: 3, borderColor: 'red' }}>
+      {forecast.forecast.map((lollero, index) => (
+        <PartOfDay key={lollero.dt} title={getTitle(lollero)} partOfDay={lollero} />
+      ))}
     </View>
   );
 };
