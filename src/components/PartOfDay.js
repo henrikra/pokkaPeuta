@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, TouchableHighlight, LayoutAnimation, Animated } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 
 const getBackgroundColor = (title) => {
@@ -69,29 +69,61 @@ const getIcon = (weather) => {
   }
 }
 
-const PartOfDay = ({ title, partOfDay }) => {
-  const [ weather ] = partOfDay.weather;
+class PartOfDay extends Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title) }}>
-      <View style={styles.imageContainer}>
-        <SvgUri width="175" height="175" source={getIcon(weather)} /> 
-      </View>
-      <View style={styles.infoContainer}>
-        <Text style={styles.title}>{title.toUpperCase()}</Text>
-        <Text style={styles.temperatures}>{getTemperature(partOfDay.main.temp)}</Text>
-        <Text style={styles.description}>{weather.main}</Text>
-        <Text style={styles.wind}>Wind: {Math.round(partOfDay.wind.speed)} m/s</Text>
-        <Text style={styles.humidity}>Humidity: {partOfDay.main.humidity} %</Text>
-      </View>
-    </View>
-  );
+    this.state = { 
+      isOpen: false,
+      fadeAnim: new Animated.Value(0), 
+    };
+    this.toggleOpen = this.toggleOpen.bind(this);
+  }
+
+  componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
+
+  toggleOpen() {
+    Animated.timing(          
+       this.state.fadeAnim,    
+       {toValue: this.state.isOpen ? 0 : 1}            
+     ).start();  
+
+    this.setState({ isOpen: !this.state.isOpen })
+  }
+
+  render() {
+    const { title, partOfDay } = this.props;
+    const { isOpen } = this.state;
+    const [ weather ] = partOfDay.weather;
+
+    return (
+      <TouchableHighlight onPress={this.toggleOpen}>
+        <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title), height: isOpen ? 200 : 80 }}>
+          <View style={styles.imageContainer}>
+            <Animated.View style={{ opacity: this.state.fadeAnim }}>
+              <SvgUri width="175" height="175" source={getIcon(weather)} /> 
+            </Animated.View>
+          </View>
+          <View style={styles.infoContainer}>
+            <Text style={styles.title}>{title.toUpperCase()}</Text>
+            <Text style={styles.temperatures}>{getTemperature(partOfDay.main.temp)}</Text>
+            <Text style={styles.description}>{weather.main}</Text>
+            <Text style={styles.wind}>Wind: {Math.round(partOfDay.wind.speed)} m/s</Text>
+            <Text style={styles.humidity}>Humidity: {partOfDay.main.humidity} %</Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    );
+  }
 };
 
 const styles = {
   container: {
     padding: 15,
     flexDirection: 'row',
+    overflow: 'hidden',
   },
   imageContainer: {
     flex: 3,
