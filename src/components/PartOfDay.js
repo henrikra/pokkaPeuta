@@ -61,10 +61,11 @@ const styles = {
     color: 'rgba(255, 255, 255, 0.7)',
     fontSize: 16,
     fontWeight: 'bold',
+    letterSpacing: 2
   },
   temperatures: {
     color: '#ffffff',
-    fontSize: 24,
+    fontSize: 32,
   }
 };
 
