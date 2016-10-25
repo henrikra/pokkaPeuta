@@ -117,12 +117,14 @@ const styles = {
   },
   wind: {
     color: '#ffffff',
-    fontSize: 18,
-    marginTop: 2,
+    fontSize: 14,
+    marginTop: 4,
+    fontWeight: 'bold',
   },
   humidity: {
     color: '#ffffff',
-    fontSize: 18,
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 };
 
