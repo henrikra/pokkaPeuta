@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import * as actions from '../actions';
-import Forecast from './Forecast';
+import OneDayWeather from './OneDayWeather';
 
 class WeatherToday extends Component {
   componentDidMount() {
@@ -12,8 +12,8 @@ class WeatherToday extends Component {
   }
 
   render() {
-    const forecasts = _.map(this.props.forecast, (forecast, index) =>
-      <Forecast key={index} forecast={forecast} />
+    const forecasts = _.map(this.props.forecast, (oneDayWeather, index) =>
+      <OneDayWeather key={index} oneDayWeather={oneDayWeather} />
     );
 
     return (

@@ -26,18 +26,18 @@ const getTitle = (lollero) => {
   }
 }
 
-const Forecast = ({ forecast }) => {
-  if (isAfterToday(forecast)) {
+const OneDayWeather = ({ oneDayWeather }) => {
+  if (isAfterToday(oneDayWeather)) {
     return null;
   }
 
   return (
     <View style={{ borderWidth: 3, borderColor: 'red' }}>
-      {forecast.forecast.map((lollero, index) => (
+      {oneDayWeather.forecast.map((lollero, index) => (
         <PartOfDay key={lollero.dt} title={getTitle(lollero)} partOfDay={lollero} />
       ))}
     </View>
   );
 };
 
-export default Forecast;
+export default OneDayWeather;
