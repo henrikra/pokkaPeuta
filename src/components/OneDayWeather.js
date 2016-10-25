@@ -11,8 +11,8 @@ const isAfterToday = (forecast) => {
   return moment(forecast.date).isAfter(lastSecondOfToday);
 }
 
-const getTitle = (lollero) => {
-  const time = lollero.dt_txt.split(' ').pop()
+const getTitle = (partOfDay) => {
+  const time = partOfDay.dt_txt.split(' ').pop()
 
   switch (time) {
     case '00:00:00':
@@ -32,9 +32,9 @@ const OneDayWeather = ({ oneDayWeather }) => {
   }
 
   return (
-    <View style={{ borderWidth: 3, borderColor: 'red' }}>
-      {oneDayWeather.forecast.map((lollero, index) => (
-        <PartOfDay key={lollero.dt} title={getTitle(lollero)} partOfDay={lollero} />
+    <View>
+      {oneDayWeather.forecast.map((partOfDay, index) => (
+        <PartOfDay key={partOfDay.dt} title={getTitle(partOfDay)} partOfDay={partOfDay} />
       ))}
     </View>
   );
