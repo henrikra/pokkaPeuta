@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import SvgUri from 'react-native-svg-uri';
 
 const getBackgroundColor = (title) => {
   switch (title) {
@@ -33,7 +34,9 @@ const getTemperature = (temperature) => {
 const PartOfDay = ({ title, partOfDay }) => {
   return (
     <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title) }}>
-      <View style={styles.imageContainer}><Text>lol</Text></View>
+      <View style={styles.imageContainer}>
+        <SvgUri width="175" height="175" source={require('../images/Sun.svg')} /> 
+      </View>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{title.toUpperCase()}</Text>
         <Text style={styles.temperatures}>{getTemperature(partOfDay.main.temp)}</Text>
@@ -48,7 +51,8 @@ const styles = {
     flexDirection: 'row',
   },
   imageContainer: {
-    flex: 3
+    flex: 3,
+    alignItems: 'center',
   },
   infoContainer: {
     flex: 2
