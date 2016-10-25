@@ -80,6 +80,9 @@ const PartOfDay = ({ title, partOfDay }) => {
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{title.toUpperCase()}</Text>
         <Text style={styles.temperatures}>{getTemperature(partOfDay.main.temp)}</Text>
+        <Text style={styles.description}>{weather.main}</Text>
+        <Text style={styles.wind}>Wind: {Math.round(partOfDay.wind.speed)} m/s</Text>
+        <Text style={styles.humidity}>Humidity: {partOfDay.main.humidity} %</Text>
       </View>
     </View>
   );
@@ -106,7 +109,21 @@ const styles = {
   temperatures: {
     color: '#ffffff',
     fontSize: 32,
-  }
+  },
+  description: {
+    color: '#ffffff',
+    fontSize: 24,
+    marginTop: 15,
+  },
+  wind: {
+    color: '#ffffff',
+    fontSize: 18,
+    marginTop: 2,
+  },
+  humidity: {
+    color: '#ffffff',
+    fontSize: 18,
+  },
 };
 
 export default PartOfDay;
