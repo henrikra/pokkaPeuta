@@ -31,11 +31,47 @@ const getTemperature = (temperature) => {
   }
 };
 
+const ICONS = {
+  nightClearSky: '01n',
+  nightFewClouds: '02n',
+  nightScatteredClouds: '03n',
+  nightBrokenClouds: '04n',
+  nightShowerRain: '09n',
+  nightRain: '10n',
+  nightThunderStorm: '11n',
+  nightMist: '50n',
+  dayClearSky: '01d',
+  dayFewClouds: '02d',
+  dayScatteredClouds: '03d',
+  dayBrokenClouds: '04d',
+  dayShowerRain: '09d',
+  dayRain: '10d',
+  dayThunderStorm: '11d',
+  dayMist: '50d',
+};
+
+const getIcon = (weather) => {
+  switch (weather.icon) {
+    case ICONS.dayRain:
+      return require("../images/Cloud-Rain.svg");
+    case ICONS.nightRain:
+      return require("../images/Cloud-Rain-Moon.svg");
+    case ICONS.nightFewClouds:
+      return require("../images/Cloud-Moon.svg");
+    case ICONS.nightClearSky:
+      return require("../images/Moon.svg");
+    default:
+      return require('../images/Sun.svg');
+  }
+}
+
 const PartOfDay = ({ title, partOfDay }) => {
+  const [ weather ] = partOfDay.weather;
+
   return (
     <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title) }}>
       <View style={styles.imageContainer}>
-        <SvgUri width="175" height="175" source={require('../images/Sun.svg')} /> 
+        <SvgUri width="175" height="175" source={getIcon(weather)} /> 
       </View>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{title.toUpperCase()}</Text>
