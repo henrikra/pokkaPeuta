@@ -22,6 +22,7 @@ export default function(state = initialState, action) {
           const dayQuarters = (every3Hour) => _.includes(goodTimes, every3Hour.dt_txt.split(' ').pop());
           return { date, forecast: forecast.filter(dayQuarters) };
         })
+        .filter((oneDayWeather) => oneDayWeather.forecast.length)
         .value();
 
       return weatherReport;
