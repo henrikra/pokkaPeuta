@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, Dimensions, View } from 'react-native';
+import { ScrollView, Text, Dimensions, View, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 
 import PartOfDay from './PartOfDay';
@@ -19,11 +19,17 @@ const getTitle = (partOfDay) => {
   }
 }
 
-const OneDayWeather = ({ oneDayWeather }) => {
+
+
+const OneDayWeather = ({ oneDayWeather, scroll, index, isLast }) => {
+  const screenWidth = Dimensions.get('window').width;
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.dateContainer}>
+        {index > 0 && <TouchableOpacity onPress={() => scroll(screenWidth * index - screenWidth)}><Text>Back</Text></TouchableOpacity>}
         <Text style={styles.date}>{moment(oneDayWeather.date).format('D.M.YYYY')}</Text>
+        {!isLast && <TouchableOpacity onPress={() => scroll(screenWidth * index + screenWidth)}><Text>Next</Text></TouchableOpacity>}
       </View>
       {oneDayWeather.forecast.map((partOfDay, index) => (
         <PartOfDay key={partOfDay.dt} title={getTitle(partOfDay)} partOfDay={partOfDay} />
@@ -37,6 +43,8 @@ const styles = {
     width: Dimensions.get('window').width,
   },
   dateContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#8ba892',
   },
