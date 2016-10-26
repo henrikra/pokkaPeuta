@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, Dimensions } from 'react-native';
+import { ScrollView, Text, Dimensions, View } from 'react-native';
 import moment from 'moment';
 
 import PartOfDay from './PartOfDay';
@@ -22,7 +22,9 @@ const getTitle = (partOfDay) => {
 const OneDayWeather = ({ oneDayWeather }) => {
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.date}>{moment(oneDayWeather.date).format('D.M.YYYY')}</Text>
+      <View style={styles.dateContainer}>
+        <Text style={styles.date}>{moment(oneDayWeather.date).format('D.M.YYYY')}</Text>
+      </View>
       {oneDayWeather.forecast.map((partOfDay, index) => (
         <PartOfDay key={partOfDay.dt} title={getTitle(partOfDay)} partOfDay={partOfDay} />
       ))}
@@ -34,11 +36,14 @@ const styles = {
   container: {
     width: Dimensions.get('window').width,
   },
+  dateContainer: {
+    alignItems: 'center',
+    backgroundColor: '#8ba892',
+  },
   date: {
     paddingHorizontal: 15,
     paddingTop: 25,
     paddingBottom: 10,
-    backgroundColor: '#8ba892',
     color: 'rgba(255, 255, 255, 0.7)',
     fontSize: 20,
     fontWeight: 'bold',
