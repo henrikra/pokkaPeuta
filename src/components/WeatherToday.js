@@ -13,9 +13,9 @@ class WeatherToday extends Component {
 
   render() {
     const { forecast, geolocation: { isLoading } } = this.props;
-    const forecastsComponents = forecast.map((oneDayWeather, index) =>
-      <OneDayWeather key={index} oneDayWeather={oneDayWeather} />
-    );
+    const forecastsComponents = forecast
+      .filter((oneDayWeather) => oneDayWeather.forecast.length)
+      .map(oneDayWeather => <OneDayWeather key={oneDayWeather.date} oneDayWeather={oneDayWeather} />);
 
     return (
       isLoading ? <Loader /> : (
