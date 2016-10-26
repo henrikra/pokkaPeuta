@@ -98,13 +98,13 @@ class PartOfDay extends Component {
     const { isOpen } = this.state;
     const [ weather ] = partOfDay.weather;
 
+    console.log(this.props);
+
     return (
       <TouchableHighlight onPress={this.toggleOpen}>
         <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title), height: isOpen ? 200 : 80 }}>
           <View style={styles.imageContainer}>
-            <Animated.View style={{ opacity: this.state.fadeAnim }}>
-              <SvgUri width="175" height="175" source={getIcon(weather)} /> 
-            </Animated.View>
+            <SvgUri width="175" height={isOpen ? 175 : 75} source={getIcon(weather)} /> 
           </View>
           <View style={styles.infoContainer}>
             <Text style={styles.title}>{title.toUpperCase()}</Text>
@@ -121,16 +121,17 @@ class PartOfDay extends Component {
 
 const styles = {
   container: {
-    padding: 15,
     flexDirection: 'row',
     overflow: 'hidden',
   },
   imageContainer: {
     flex: 3,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   infoContainer: {
-    flex: 2
+    flex: 2,
+    paddingVertical: 15,
   },
   title: {
     color: 'rgba(255, 255, 255, 0.7)',
