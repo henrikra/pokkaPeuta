@@ -5,6 +5,7 @@ import _ from 'lodash';
 
 import * as actions from '../actions';
 import OneDayWeather from './OneDayWeather';
+import Loader from './Loader';
 
 class WeatherToday extends Component {
   componentDidMount() {
@@ -17,7 +18,7 @@ class WeatherToday extends Component {
     );
 
     return (
-      this.props.geolocation.isLoading ? <ActivityIndicator size="large" /> : (
+      this.props.geolocation.isLoading ? <Loader /> : (
         <ScrollView 
           horizontal={true}
           snapToInterval={Dimensions.get('window').width}
