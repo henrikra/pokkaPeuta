@@ -18,8 +18,6 @@ class WeatherToday extends Component {
   }
 
   scrollTo(width) {
-    console.log("toimii", this.refs, width);
-
     this.refs.scrollView.scrollTo({ x: width });
   }
   
