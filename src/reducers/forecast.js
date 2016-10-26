@@ -9,7 +9,7 @@ const goodTimes = [
   '00:00:00',
 ];
 
-const initialState = {};
+const initialState = [];
 
 export default function(state = initialState, action) {
   switch (action.type) {
