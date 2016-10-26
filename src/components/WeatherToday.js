@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Dimensions } from 'react-native';
+import { ScrollView, Dimensions, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
@@ -17,14 +17,15 @@ class WeatherToday extends Component {
     );
 
     return (
-      <ScrollView 
-        horizontal={true}
-        snapToInterval={Dimensions.get('window').width}
-        snapToAlignment="start"
-        decelerationRate={0}
-      >
-        {forecasts}
-      </ScrollView>
+      this.props.geolocation.isLoading ? <ActivityIndicator size="large" /> : (
+        <ScrollView 
+          horizontal={true}
+          snapToInterval={Dimensions.get('window').width}
+          snapToAlignment="start"
+          decelerationRate={0}>
+          {forecasts}
+        </ScrollView>
+      )
     );
   }
 };
