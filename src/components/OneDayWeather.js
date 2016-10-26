@@ -36,7 +36,7 @@ const styles = {
   },
   date: {
     paddingHorizontal: 15,
-    paddingTop: 20,
+    paddingTop: 25,
     paddingBottom: 10,
     backgroundColor: '#8ba892',
     color: 'rgba(255, 255, 255, 0.7)',
