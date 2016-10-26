@@ -22,7 +22,7 @@ class WeatherToday extends Component {
           horizontal={true}
           snapToInterval={Dimensions.get('window').width}
           snapToAlignment="start"
-          decelerationRate={0}>
+          decelerationRate="fast">
           {forecastsComponents}
         </ScrollView>
       )
