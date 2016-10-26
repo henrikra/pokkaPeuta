@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
@@ -17,7 +17,12 @@ class WeatherToday extends Component {
     );
 
     return (
-      <ScrollView>
+      <ScrollView 
+        horizontal={true}
+        snapToInterval={Dimensions.get('window').width}
+        snapToAlignment="start"
+        decelerationRate={0}
+      >
         {forecasts}
       </ScrollView>
     );

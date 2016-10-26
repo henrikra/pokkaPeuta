@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
 
 import PartOfDay from './PartOfDay';
 
@@ -20,12 +20,18 @@ const getTitle = (partOfDay) => {
 
 const OneDayWeather = ({ oneDayWeather }) => {
   return (
-    <View>
+    <View style={styles.container}>
       {oneDayWeather.forecast.map((partOfDay, index) => (
         <PartOfDay key={partOfDay.dt} title={getTitle(partOfDay)} partOfDay={partOfDay} />
       ))}
     </View>
   );
+};
+
+const styles = {
+  container: {
+    width: Dimensions.get('window').width,
+  }
 };
 
 export default OneDayWeather;
