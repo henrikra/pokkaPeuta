@@ -75,7 +75,7 @@ class PartOfDay extends Component {
 
     this.state = { 
       isOpen: false,
-      fadeAnim: new Animated.Value(0), 
+      scale: new Animated.Value(0.6),
     };
     this.toggleOpen = this.toggleOpen.bind(this);
   }
@@ -85,10 +85,13 @@ class PartOfDay extends Component {
   }
 
   toggleOpen() {
-    Animated.timing(          
-       this.state.fadeAnim,    
-       {toValue: this.state.isOpen ? 0 : 1}            
-     ).start();  
+    Animated.timing(
+      this.state.scale,
+      {
+        toValue: this.state.isOpen ? 0.6 : 1.2, 
+        duration: 100 
+      }
+    ).start();
 
     this.setState({ isOpen: !this.state.isOpen })
   }
@@ -98,13 +101,13 @@ class PartOfDay extends Component {
     const { isOpen } = this.state;
     const [ weather ] = partOfDay.weather;
 
-    console.log(this.props);
-
     return (
       <TouchableHighlight onPress={this.toggleOpen}>
         <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title), height: isOpen ? 200 : 80 }}>
           <View style={styles.imageContainer}>
-            <SvgUri width="175" height={isOpen ? 175 : 75} source={getIcon(weather)} /> 
+            <Animated.View style={{ transform: [{ scale: this.state.scale }] }}>
+              <SvgUri width="150" height="150" source={getIcon(weather)} />
+            </Animated.View> 
           </View>
           <View style={styles.infoContainer}>
             <Text style={styles.title}>{title.toUpperCase()}</Text>
