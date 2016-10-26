@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Dimensions, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 
 import * as actions from '../actions';
 import OneDayWeather from './OneDayWeather';
@@ -13,18 +12,19 @@ class WeatherToday extends Component {
   }
 
   render() {
-    const forecasts = _.map(this.props.forecast, (oneDayWeather, index) =>
+    const { forecast, geolocation: { isLoading } } = this.props;
+    const forecastsComponents = forecast.map((oneDayWeather, index) =>
       <OneDayWeather key={index} oneDayWeather={oneDayWeather} />
     );
 
     return (
-      this.props.geolocation.isLoading ? <Loader /> : (
+      isLoading ? <Loader /> : (
         <ScrollView 
           horizontal={true}
           snapToInterval={Dimensions.get('window').width}
           snapToAlignment="start"
           decelerationRate={0}>
-          {forecasts}
+          {forecastsComponents}
         </ScrollView>
       )
     );
