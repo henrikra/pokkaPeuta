@@ -16,7 +16,7 @@ const styles = {
   },
   info: {
     fontSize: 24,
-    marginBottom: 15,
+    marginBottom: 10,
   },
 };
 
