@@ -23,14 +23,16 @@ const getTitle = (partOfDay) => {
 
 const OneDayWeather = ({ oneDayWeather }) => {
   return (
-    <ScrollView style={styles.container}>
+    <View>
       <View style={styles.dateContainer}>
         <Text style={styles.date}>{moment(oneDayWeather.date).format('D.M.YYYY')}</Text>
       </View>
-      {oneDayWeather.forecast.map((partOfDay, index) => (
-        <PartOfDay key={partOfDay.dt} title={getTitle(partOfDay)} partOfDay={partOfDay} />
-      ))}
-    </ScrollView>
+      <ScrollView style={styles.container}>
+        {oneDayWeather.forecast.map((partOfDay, index) => (
+          <PartOfDay key={partOfDay.dt} title={getTitle(partOfDay)} partOfDay={partOfDay} />
+        ))}
+      </ScrollView>
+    </View>
   );
 };
 
