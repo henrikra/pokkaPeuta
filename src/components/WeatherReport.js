@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Dimensions, ActivityIndicator } from 'react-native';
+import { ScrollView, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
