@@ -23,7 +23,7 @@ class WeatherToday extends Component {
   
 
   render() {
-    const { forecast, geolocation: { isLoading } } = this.props;
+    const { weatherReport: { forecast, city }, geolocation: { isLoading } } = this.props;
     const forecastsComponents = forecast
       .map((oneDayWeather, index) => (
         <OneDayWeather 
@@ -31,8 +31,10 @@ class WeatherToday extends Component {
           oneDayWeather={oneDayWeather} 
           scroll={this.scrollTo} 
           index={index}
-          isLast={index === forecast.length - 1} />)
-      );
+          isLast={index === forecast.length - 1}
+          city={city} 
+        />
+      ));
 
     return (
       isLoading ? <Loader /> : (
@@ -49,9 +51,9 @@ class WeatherToday extends Component {
   }
 };
 
-const mapStateToProps = ({ geolocation, forecast }) => ({
+const mapStateToProps = ({ geolocation, weatherReport }) => ({
   geolocation,
-  forecast,
+  weatherReport,
 });
 
 export default connect(mapStateToProps, actions)(WeatherToday);

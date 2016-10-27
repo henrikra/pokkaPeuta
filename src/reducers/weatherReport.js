@@ -9,12 +9,14 @@ const goodTimes = [
   '00:00:00',
 ];
 
-const initialState = [];
+const initialState = {
+  forecast: [],
+};
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case types.RECEIVE_FORECAST:
-      const weatherReport = _(action.forecast.list)
+      const forecast = _(action.forecast.list)
         .groupBy((forecast) =>
           forecast.dt_txt.split(' ').shift()
         )
@@ -25,7 +27,7 @@ export default function(state = initialState, action) {
         .filter((oneDayWeather) => oneDayWeather.forecast.length)
         .value();
 
-      return weatherReport;
+      return { ...state, forecast, city: action.forecast.city };
     default:
       return state;
   }

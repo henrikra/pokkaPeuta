@@ -21,7 +21,7 @@ const getTitle = (partOfDay) => {
 
 
 
-const OneDayWeather = ({ oneDayWeather, scroll, index, isLast }) => {
+const OneDayWeather = ({ oneDayWeather, scroll, index, isLast, city }) => {
   const screenWidth = Dimensions.get('window').width;
 
   return (
@@ -31,6 +31,7 @@ const OneDayWeather = ({ oneDayWeather, scroll, index, isLast }) => {
         <Text style={styles.date}>{moment(oneDayWeather.date).format('D.M.YYYY')}</Text>
         {!isLast && <TouchableOpacity style={styles.button} onPress={() => scroll(screenWidth * index + screenWidth)}><Text>Next</Text></TouchableOpacity>}
       </View>
+      <Text>{city.name}, {city.country}</Text>
       {oneDayWeather.forecast.map((partOfDay, index) => (
         <PartOfDay key={partOfDay.dt} title={getTitle(partOfDay)} partOfDay={partOfDay} />
       ))}

@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
 import geolocation from './geolocation';
-import forecast from './forecast';
+import weatherReport from './weatherReport';
 
 export default combineReducers({
   geolocation,
-  forecast,
+  weatherReport,
 });
