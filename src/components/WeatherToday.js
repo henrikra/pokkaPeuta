@@ -34,7 +34,6 @@ class WeatherToday extends Component {
           isLast={index === forecast.length - 1} />)
       );
 
-    console.log("halo", this.refs);
     return (
       isLoading ? <Loader /> : (
         <ScrollView 
