@@ -83,7 +83,7 @@ class PartOfDay extends Component {
 
     this.state = { 
       isOpen: false,
-      scale: new Animated.Value(0.6),
+      scale: new Animated.Value(0.8),
     };
     this.toggleOpen = this.toggleOpen.bind(this);
   }
@@ -96,7 +96,7 @@ class PartOfDay extends Component {
     Animated.timing(
       this.state.scale,
       {
-        toValue: this.state.isOpen ? 0.6 : 1.2, 
+        toValue: this.state.isOpen ? 0.8 : 1.2, 
         duration: 100 
       }
     ).start();
@@ -114,7 +114,7 @@ class PartOfDay extends Component {
         <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title), height: isOpen ? 200 : 100 }}>
           <View style={styles.imageContainer}>
             <Animated.View style={{ transform: [{ scale: this.state.scale }] }}>
-              <SvgUri width="150" height="150" source={getIcon(weather)} />
+              <SvgUri width="125" height="125" source={getIcon(weather)} />
             </Animated.View> 
           </View>
           <View style={styles.infoContainer}>
