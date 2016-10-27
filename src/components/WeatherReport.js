@@ -6,7 +6,7 @@ import * as actions from '../actions';
 import OneDayWeather from './OneDayWeather';
 import Loader from './Loader';
 
-class WeatherToday extends Component {
+class WeatherReport extends Component {
   constructor(props) {
     super(props);
 
@@ -65,4 +65,4 @@ const styles = {
   },
 }
 
-export default connect(mapStateToProps, actions)(WeatherToday);
+export default connect(mapStateToProps, actions)(WeatherReport);

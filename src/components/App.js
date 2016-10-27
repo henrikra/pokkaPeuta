@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import reducers from '../reducers';
-import WeatherToday from './WeatherToday';
+import WeatherReport from './WeatherReport';
 import Navigation from './Navigation';
 
 export default class App extends Component {
@@ -18,7 +18,7 @@ export default class App extends Component {
       <Provider store={createStore(reducers, applyMiddleware(thunk))}>
         <View style={styles.container}>
           <Navigation />
-          <WeatherToday />
+          <WeatherReport />
         </View>
       </Provider>
     );
