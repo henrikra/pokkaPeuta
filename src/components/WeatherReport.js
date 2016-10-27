@@ -7,33 +7,15 @@ import OneDayWeather from './OneDayWeather';
 import Loader from './Loader';
 
 class WeatherReport extends Component {
-  constructor(props) {
-    super(props);
-
-    this.scrollTo = this.scrollTo.bind(this);
-  }
-
   componentDidMount() {
     this.props.fetchLocation();
   }
 
-  scrollTo(width) {
-    this.refs.scrollView.scrollTo({ x: width });
-  }
-  
-
   render() {
-    const { weatherReport: { forecast, city }, geolocation: { isLoading } } = this.props;
+    const { weatherReport: { forecast }, geolocation: { isLoading } } = this.props;
     const forecastsComponents = forecast
       .map((oneDayWeather, index) => (
-        <OneDayWeather 
-          key={oneDayWeather.date}
-          oneDayWeather={oneDayWeather} 
-          scroll={this.scrollTo} 
-          index={index}
-          isLast={index === forecast.length - 1}
-          city={city} 
-        />
+        <OneDayWeather key={oneDayWeather.date} oneDayWeather={oneDayWeather} />
       ));
 
     return (
