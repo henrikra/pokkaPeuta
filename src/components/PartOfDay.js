@@ -136,10 +136,12 @@ const styles = {
     overflow: 'hidden',
   },
   imageContainer: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   infoContainer: {
+    flex: 1,
     paddingVertical: 24,
   },
   title: {
