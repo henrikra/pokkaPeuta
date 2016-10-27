@@ -19,8 +19,6 @@ const getTitle = (partOfDay) => {
   }
 }
 
-
-
 const OneDayWeather = ({ oneDayWeather }) => {
   return (
     <View>

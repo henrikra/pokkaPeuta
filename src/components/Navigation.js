@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
 
-const Navigation = () => {
+const Navigation = ({ weatherReport: { city } }) => {
   return (
     <View style={styles.container}>
-      <Text>Navigation</Text>
+      {city && <Text>{city.name}, {city.country}</Text>}
     </View>
   );
 };
@@ -21,4 +22,8 @@ const styles = {
   },
 };
 
-export default Navigation;
+const mapStateToProps = ({ weatherReport }) => ({
+  weatherReport,
+});
+
+export default connect(mapStateToProps)(Navigation);
