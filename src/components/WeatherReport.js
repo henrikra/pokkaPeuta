@@ -25,8 +25,7 @@ class WeatherReport extends Component {
           horizontal={true}
           snapToInterval={Dimensions.get('window').width - 45}
           snapToAlignment="start"
-          decelerationRate="fast"
-          ref="scrollView">
+          decelerationRate="fast">
           {forecastsComponents}
         </ScrollView>
       )
