@@ -60,12 +60,20 @@ const getIcon = (weather) => {
       return require("../images/Cloud-Rain.svg");
     case ICONS.nightFewClouds:
       return require("../images/Cloud-Moon.svg");
-    case ICONS.nightClearSky:
-      return require("../images/Moon.svg");
+    case ICONS.dayFewClouds:
+      return require("../images/Cloud-Sun.svg");
     case ICONS.nightBrokenClouds:
       return require("../images/Cloud.svg");
-    default:
-      return require('../images/Sun.svg');
+    case ICONS.dayBrokenClouds:
+      return require("../images/Cloud.svg");
+    case ICONS.dayScatteredClouds:
+      return require("../images/Cloud.svg");
+    case ICONS.nightScatteredClouds:
+      return require("../images/Cloud.svg");
+    case ICONS.dayClearSky:
+      return require("../images/Sun.svg");
+    case ICONS.nightClearSky:
+      return require("../images/Moon.svg");
   }
 }
 
@@ -100,7 +108,7 @@ class PartOfDay extends Component {
     const { title, partOfDay } = this.props;
     const { isOpen } = this.state;
     const [ weather ] = partOfDay.weather;
-
+    console.log(partOfDay.dt_txt, weather.icon);
     return (
       <TouchableHighlight onPress={this.toggleOpen}>
         <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title), height: isOpen ? 200 : 80 }}>
