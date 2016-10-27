@@ -111,7 +111,7 @@ class PartOfDay extends Component {
 
     return (
       <TouchableHighlight onPress={this.toggleOpen}>
-        <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title), height: isOpen ? 200 : 80 }}>
+        <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title), height: isOpen ? 200 : 100 }}>
           <View style={styles.imageContainer}>
             <Animated.View style={{ transform: [{ scale: this.state.scale }] }}>
               <SvgUri width="150" height="150" source={getIcon(weather)} />
@@ -142,7 +142,7 @@ const styles = {
   },
   infoContainer: {
     flex: 2,
-    paddingVertical: 15,
+    paddingVertical: 24,
   },
   title: {
     color: 'rgba(255, 255, 255, 0.7)',
