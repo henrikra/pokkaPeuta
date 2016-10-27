@@ -25,7 +25,10 @@ const OneDayWeather = ({ oneDayWeather }) => {
       <View style={styles.dateContainer}>
         <Text style={styles.date}>{moment(oneDayWeather.date).format('D.M.YYYY')}</Text>
       </View>
-      <ScrollView style={styles.container}>
+      <ScrollView
+        style={styles.container}
+        showsVerticalScrollIndicator={false}
+      >
         {oneDayWeather.forecast.map((partOfDay, index) => (
           <PartOfDay key={partOfDay.dt} title={getTitle(partOfDay)} partOfDay={partOfDay} />
         ))}
