@@ -10,12 +10,14 @@ import thunk from 'redux-thunk';
 
 import reducers from '../reducers';
 import WeatherToday from './WeatherToday';
+import Navigation from './Navigation';
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={createStore(reducers, applyMiddleware(thunk))}>
         <View style={styles.container}>
+          <Navigation />
           <WeatherToday />
         </View>
       </Provider>
