@@ -108,7 +108,7 @@ class PartOfDay extends Component {
     const { title, partOfDay } = this.props;
     const { isOpen } = this.state;
     const [ weather ] = partOfDay.weather;
-    console.log(partOfDay.dt_txt, weather.icon);
+
     return (
       <TouchableHighlight onPress={this.toggleOpen}>
         <View style={{ ...styles.container, backgroundColor: getBackgroundColor(title), height: isOpen ? 200 : 80 }}>
