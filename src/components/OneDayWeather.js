@@ -21,17 +21,12 @@ const getTitle = (partOfDay) => {
 
 
 
-const OneDayWeather = ({ oneDayWeather, scroll, index, isLast, city }) => {
-  const screenWidth = Dimensions.get('window').width;
-
+const OneDayWeather = ({ oneDayWeather }) => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.dateContainer}>
-        {index > 0 && <TouchableOpacity style={styles.button} onPress={() => scroll(screenWidth * index - screenWidth)}><Text>Back</Text></TouchableOpacity>}
         <Text style={styles.date}>{moment(oneDayWeather.date).format('D.M.YYYY')}</Text>
-        {!isLast && <TouchableOpacity style={styles.button} onPress={() => scroll(screenWidth * index + screenWidth)}><Text>Next</Text></TouchableOpacity>}
       </View>
-      <Text>{city.name}, {city.country}</Text>
       {oneDayWeather.forecast.map((partOfDay, index) => (
         <PartOfDay key={partOfDay.dt} title={getTitle(partOfDay)} partOfDay={partOfDay} />
       ))}
@@ -41,25 +36,14 @@ const OneDayWeather = ({ oneDayWeather, scroll, index, isLast, city }) => {
 
 const styles = {
   container: {
-    width: Dimensions.get('window').width,
+    width: Dimensions.get('window').width - 60,
+    marginRight: 15,
   },
   dateContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#8ba892',
-    paddingHorizontal: 7,
-    paddingTop: 25,
-    paddingBottom: 7,
-  },
-  button: {
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-    paddingHorizontal: 8,
-    paddingVertical: 5,
-    borderRadius: 3,
-  },
+    marginBottom: 5,
+  },  
   date: {
-    color: 'rgba(255, 255, 255, 0.7)',
     fontSize: 20,
     fontWeight: 'bold',
   },

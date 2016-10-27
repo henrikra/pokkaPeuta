@@ -38,9 +38,10 @@ class WeatherToday extends Component {
 
     return (
       isLoading ? <Loader /> : (
-        <ScrollView 
+        <ScrollView
+          contentContainerStyle={styles.container}
           horizontal={true}
-          snapToInterval={Dimensions.get('window').width}
+          snapToInterval={Dimensions.get('window').width - 45}
           snapToAlignment="start"
           decelerationRate="fast"
           ref="scrollView">
@@ -55,5 +56,13 @@ const mapStateToProps = ({ geolocation, weatherReport }) => ({
   geolocation,
   weatherReport,
 });
+
+const styles = {
+  container: {
+    paddingTop: 15,
+    paddingLeft: 30,
+    paddingRight: 15,
+  },
+}
 
 export default connect(mapStateToProps, actions)(WeatherToday);
