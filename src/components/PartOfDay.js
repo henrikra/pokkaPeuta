@@ -119,7 +119,7 @@ class PartOfDay extends Component {
           </View>
           <View style={styles.infoContainer}>
             <Text style={styles.title}>{title.toUpperCase()}</Text>
-            <Text style={styles.temperatures}>{getTemperature(partOfDay.main.temp)}</Text>
+            <Text style={styles.temperatures}>{getTemperature(partOfDay.main.temp)}&deg;</Text>
             <Text style={styles.description}>{weather.main}</Text>
             <Text style={styles.wind}>Wind: {Math.round(partOfDay.wind.speed)} m/s</Text>
             <Text style={styles.humidity}>Humidity: {partOfDay.main.humidity} %</Text>
