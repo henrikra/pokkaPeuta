@@ -18,7 +18,7 @@ const getBackgroundColor = (title) => {
 }
 
 const getTemperature = (temperature) => {
-  const roundedTemperature = Math.round(temperature);
+  const roundedTemperature = Math.floor(temperature);
   
   if (roundedTemperature > 0) {
     return `+ ${roundedTemperature}`;
