@@ -23,7 +23,7 @@ export default function(state = initialState, action) {
         .groupBy(forecast => forecast.dt_txt.split(' ').shift())
         .map((forecast, date) => ({ date, forecast }))
         .value();
-      console.log('by date', forecastGroupedByDate);
+
       const forecast = _(action.forecast.list)
         .groupBy((forecast) =>
           forecast.dt_txt.split(' ').shift()
@@ -35,7 +35,9 @@ export default function(state = initialState, action) {
         .filter((oneDayWeather) => oneDayWeather.forecast.length)
         .value();
 
-      return { ...state, forecast, selectedForecast: forecastGroupedByDate[1], forecastGroupedByDate, city: action.forecast.city };
+      return { ...state, forecast, selectedForecast: _.first(forecastGroupedByDate), forecastGroupedByDate, city: action.forecast.city };
+    case types.SELECT_DATE:
+      return { ...state, selectedForecast: action.forecast };
     default:
       return state;
   }

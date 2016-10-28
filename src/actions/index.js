@@ -30,3 +30,10 @@ export function fetchLocation(coordinates) {
     );
   };
 }
+
+export function selectDate(forecast) {
+  return {
+    type: types.SELECT_DATE,
+    forecast,
+  };
+}

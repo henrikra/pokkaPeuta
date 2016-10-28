@@ -1,20 +1,24 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-const CurrentWeather = ({ weatherReport }) => {
+import * as actions from '../actions';
+
+const CurrentWeather = ({ weatherReport, selectDate }) => {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       horizontal={true}>
       {weatherReport.forecastGroupedByDate.map((forecast) => {
         return (
-          <View key={forecast.date} style={styles.listItem}>
-            <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-            <Text style={styles.listItemText}>{moment(forecast.date).format('D.M')}</Text>
-          </View>
+          <TouchableOpacity key={forecast.date} onPress={() => selectDate(forecast)}>
+            <View style={styles.listItem}>
+              <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
+              <Text style={styles.listItemText}>{moment(forecast.date).format('D.M')}</Text>
+            </View>
+          </TouchableOpacity>
         );
       })}
     </ScrollView>
@@ -46,4 +50,4 @@ const mapStateToProps = ({ weatherReport }) => ({
   weatherReport,
 });
 
-export default connect(mapStateToProps)(CurrentWeather);
+export default connect(mapStateToProps, actions)(CurrentWeather);
