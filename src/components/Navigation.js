@@ -3,9 +3,10 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 const Navigation = ({ weatherReport: { city } }) => {
+  console.log("ll", city);
   return (
     <View style={styles.container}>
-      {city && <Text style={styles.city}>{city.name}, {city.country}</Text>}
+      {city && <Text style={styles.city}>{city.name} 28.10.2016</Text>}
     </View>
   );
 };
@@ -15,14 +16,14 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#8ba892',
-    paddingHorizontal: 7,
+    paddingHorizontal: 15,
     paddingTop: 25,
     paddingBottom: 7,
   },
   city: {
-    color: 'rgba(255, 255, 255, 0.7)',
-    fontSize: 20,
+    backgroundColor: 'transparent',
+    color: '#ffffff',
+    fontSize: 16,
     fontWeight: 'bold',
   },
 };

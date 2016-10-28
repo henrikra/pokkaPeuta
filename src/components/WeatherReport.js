@@ -18,6 +18,8 @@ class WeatherReport extends Component {
         <OneDayWeather key={oneDayWeather.date} oneDayWeather={oneDayWeather} />
       ));
 
+    return null;
+
     return (
       isLoading ? <Loader /> : (
         <ScrollView
