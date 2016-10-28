@@ -50,13 +50,25 @@ const getIcon = (weather) => {
   }
 }
 
+const formatTime = (time) => {
+  return time.split(':')
+    .map((partOfTime) => {
+      if (_.startsWith(partOfTime, '0') && _.toNumber(partOfTime[1]) > 0) {
+        return partOfTime[1];
+      }
+
+      return partOfTime
+    })
+    .slice(0, -1)
+    .join(':');
+};
+
 const CurrentWeather = ({ weatherReport: { selectedForecast } }) => {
   if (!selectedForecast) {
     return null;
   }
   const bigForecast = _.first(selectedForecast.forecast);
   const restOfForecast = _.tail(selectedForecast.forecast);
-  console.log('big shit', bigForecast);
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
@@ -65,11 +77,10 @@ const CurrentWeather = ({ weatherReport: { selectedForecast } }) => {
       </View>
       <View style={styles.timesContainer}>
         {restOfForecast.map((forecast) => {
-          console.log('yksi', forecast);
           return (
             <View key={forecast.dt} style={styles.infoRow}>
               <Text style={styles.infoRowText}>
-                {forecast.dt_txt.split(' ').pop()}
+                {formatTime(forecast.dt_txt.split(' ').pop())}
               </Text>
               <SvgUri style={styles.infoRowIcon} width="75" height="75" source={getIcon(_.first(forecast.weather))} />
               <Text style={styles.infoRowText}>{_.floor(forecast.main.temp)}&deg;C</Text>
