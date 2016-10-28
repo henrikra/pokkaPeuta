@@ -1,50 +1,35 @@
 import React from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
+import { connect } from 'react-redux';
+import _ from 'lodash';
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ weatherReport: { selectedForecast } }) => {
+  if (!selectedForecast) {
+    return null;
+  }
+  const bigForecast = _.first(selectedForecast.forecast);
+  const restOfForecast = _.tail(selectedForecast.forecast);
+
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
         <SvgUri style={styles.icon} width="175" height="175" source={require('../images/Cloud-Rain.svg')} />
-        <Text style={styles.temperature}>28&deg;C</Text>
+        <Text style={styles.temperature}>{_.floor(bigForecast.main.temp)}&deg;C</Text>
       </View>
       <View style={styles.timesContainer}>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoRowText}>3:00</Text>
-          <SvgUri style={styles.infoRowIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-          <Text style={styles.infoRowText}>23&deg;C</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoRowText}>6:00</Text>
-          <SvgUri style={styles.infoRowIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-          <Text style={styles.infoRowText}>23&deg;C</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoRowText}>9:00</Text>
-          <SvgUri style={styles.infoRowIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-          <Text style={styles.infoRowText}>23&deg;C</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoRowText}>12:00</Text>
-          <SvgUri style={styles.infoRowIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-          <Text style={styles.infoRowText}>23&deg;C</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoRowText}>15:00</Text>
-          <SvgUri style={styles.infoRowIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-          <Text style={styles.infoRowText}>23&deg;C</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoRowText}>18:00</Text>
-          <SvgUri style={styles.infoRowIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-          <Text style={styles.infoRowText}>23&deg;C</Text>
-        </View>
-        <View style={styles.infoRow}>
-          <Text style={styles.infoRowText}>21:00</Text>
-          <SvgUri style={styles.infoRowIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-          <Text style={styles.infoRowText}>23&deg;C</Text>
-        </View>
+        {restOfForecast.map((forecast) => {
+          console.log('yksi', forecast);
+          return (
+            <View key={forecast.dt} style={styles.infoRow}>
+              <Text style={styles.infoRowText}>
+                {forecast.dt_txt.split(' ').pop()}
+              </Text>
+              <SvgUri style={styles.infoRowIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
+              <Text style={styles.infoRowText}>{_.floor(forecast.main.temp)}&deg;C</Text>
+            </View>
+          );
+        })}
       </View>
     </View>
   )
@@ -83,4 +68,8 @@ const styles = {
   }
 };
 
-export default CurrentWeather;
+const mapStateToProps = ({ weatherReport }) => ({
+  weatherReport,
+});
+
+export default connect(mapStateToProps)(CurrentWeather);

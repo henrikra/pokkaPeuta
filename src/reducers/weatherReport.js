@@ -12,6 +12,7 @@ const goodTimes = [
 const initialState = {
   forecast: [],
   forecastGroupedByDate: [],
+  selectedForecast: null,
 };
 
 export default function(state = initialState, action) {
@@ -34,7 +35,7 @@ export default function(state = initialState, action) {
         .filter((oneDayWeather) => oneDayWeather.forecast.length)
         .value();
 
-      return { ...state, forecast, forecastGroupedByDate, city: action.forecast.city };
+      return { ...state, forecast, selectedForecast: forecastGroupedByDate[1], forecastGroupedByDate, city: action.forecast.city };
     default:
       return state;
   }

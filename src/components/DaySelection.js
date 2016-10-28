@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 const CurrentWeather = ({ weatherReport }) => {
+  console.log('onkohan', weatherReport);
   return (
     <ScrollView
       contentContainerStyle={styles.container}
