@@ -29,7 +29,7 @@ const styles = {
   container: {
     flexDirection: 'row',
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    paddingVertical: 25,
+    paddingVertical: 20,
   },
   listItem: {
     alignItems: 'center',

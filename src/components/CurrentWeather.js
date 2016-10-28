@@ -3,6 +3,7 @@ import { View, Text, Dimensions } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import moment from 'moment';
 
 const ICONS = {
   nightClearSky: '01n',
@@ -69,16 +70,18 @@ const CurrentWeather = ({ weatherReport: { selectedForecast } }) => {
   }
   const bigForecast = _.first(selectedForecast.forecast);
   const restOfForecast = _.tail(selectedForecast.forecast);
+  
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
         <SvgUri style={styles.icon} width="175" height="175" source={getIcon(_.first(bigForecast.weather))} />
         <Text style={styles.temperature}>{_.floor(bigForecast.main.temp)}&deg;C</Text>
       </View>
+      <Text style={styles.bigTemperature}>{moment(bigForecast.dt_txt.split(' ').shift()).format('D.M')}</Text>
       <View style={styles.timesContainer}>
-        {restOfForecast.map((forecast) => {
+        {restOfForecast.map((forecast, index) => {
           return (
-            <View key={forecast.dt} style={styles.infoRow}>
+            <View key={forecast.dt} style={{ ...styles.infoRow, marginTop: !index ? 0 : -30 }}>
               <Text style={styles.infoRowText}>
                 {formatTime(forecast.dt_txt.split(' ').pop())}
               </Text>
@@ -100,6 +103,13 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
   },
+  bigTemperature: {
+    backgroundColor: 'transparent',
+    color: '#ffffff',
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: -30,
+  },
   temperature: {
     backgroundColor: 'transparent',
     color: '#ffffff',
@@ -113,7 +123,6 @@ const styles = {
   infoRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: -30,
   },
   infoRowText: {
     backgroundColor: 'transparent',
