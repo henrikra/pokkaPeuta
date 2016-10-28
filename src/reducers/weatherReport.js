@@ -11,11 +11,18 @@ const goodTimes = [
 
 const initialState = {
   forecast: [],
+  forecastGroupedByDate: [],
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case types.RECEIVE_FORECAST:
+      console.log(action);
+      const forecastGroupedByDate = _(action.forecast.list)
+        .groupBy(forecast => forecast.dt_txt.split(' ').shift())
+        .map((forecast, date) => ({ date, forecast }))
+        .value();
+      console.log('by date', forecastGroupedByDate);
       const forecast = _(action.forecast.list)
         .groupBy((forecast) =>
           forecast.dt_txt.split(' ').shift()
@@ -27,7 +34,7 @@ export default function(state = initialState, action) {
         .filter((oneDayWeather) => oneDayWeather.forecast.length)
         .value();
 
-      return { ...state, forecast, city: action.forecast.city };
+      return { ...state, forecast, forecastGroupedByDate, city: action.forecast.city };
     default:
       return state;
   }

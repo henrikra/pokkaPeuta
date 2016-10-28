@@ -1,32 +1,23 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
+import { connect } from 'react-redux';
+import moment from 'moment';
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ weatherReport }) => {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       horizontal={true}>
-      <View style={styles.listItem}>
-        <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-        <Text style={styles.listItemText}>29.10</Text>
-      </View>
-      <View style={styles.listItem}>
-        <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-        <Text style={styles.listItemText}>29.10</Text>
-      </View>
-      <View style={styles.listItem}>
-        <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-        <Text style={styles.listItemText}>29.10</Text>
-      </View>
-      <View style={styles.listItem}>
-        <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-        <Text style={styles.listItemText}>29.10</Text>
-      </View>
-      <View style={styles.listItem}>
-        <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-        <Text style={styles.listItemText}>29.10</Text>
-      </View>
+      {weatherReport.forecastGroupedByDate.map((forecast) => {
+        console.log(forecast);
+        return (
+          <View key={forecast.date} style={styles.listItem}>
+            <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
+            <Text style={styles.listItemText}>{moment(forecast.date).format('D.M')}</Text>
+          </View>
+        );
+      })}
     </ScrollView>
   )
 }
@@ -52,4 +43,8 @@ const styles = {
   }
 };
 
-export default CurrentWeather;
+const mapStateToProps = ({ weatherReport }) => ({
+  weatherReport,
+});
+
+export default connect(mapStateToProps)(CurrentWeather);
