@@ -34,7 +34,7 @@ const styles = {
   listItem: {
     alignItems: 'center',
     marginTop: -20,
-    width: 105,
+    width: 90,
   },
   listItemText: {
     color: '#ffffff',
