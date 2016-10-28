@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Dimensions } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { connect } from 'react-redux';
 import _ from 'lodash';
@@ -80,7 +80,7 @@ const CurrentWeather = ({ weatherReport: { selectedForecast } }) => {
       <Text style={styles.bigTemperature}>{moment(bigForecast.dt_txt.split(' ').shift()).format('D.M.YYYY')}</Text>
       
       <View style={styles.fucker}>
-        <ScrollView>
+        <ScrollView contentContainerStyle={{ width: Dimensions.get('window').width, alignItems: 'center' }}>
           {restOfForecast.map((forecast, index) => {
             return (
               <View key={forecast.dt} style={{ ...styles.infoRow, marginTop: !index ? -15 : -30 }}>
