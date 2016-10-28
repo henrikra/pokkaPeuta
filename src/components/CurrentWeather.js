@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { connect } from 'react-redux';
 import _ from 'lodash';
@@ -70,26 +70,29 @@ const CurrentWeather = ({ weatherReport: { selectedForecast } }) => {
   }
   const bigForecast = _.first(selectedForecast.forecast);
   const restOfForecast = _.tail(selectedForecast.forecast);
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
         <SvgUri style={styles.icon} width="175" height="175" source={getIcon(_.first(bigForecast.weather))} />
         <Text style={styles.temperature}>{_.floor(bigForecast.main.temp)}&deg;C</Text>
       </View>
-      <Text style={styles.bigTemperature}>{moment(bigForecast.dt_txt.split(' ').shift()).format('D.M')}</Text>
-      <View style={styles.timesContainer}>
-        {restOfForecast.map((forecast, index) => {
-          return (
-            <View key={forecast.dt} style={{ ...styles.infoRow, marginTop: !index ? 0 : -30 }}>
-              <Text style={styles.infoRowText}>
-                {formatTime(forecast.dt_txt.split(' ').pop())}
-              </Text>
-              <SvgUri style={styles.infoRowIcon} width="75" height="75" source={getIcon(_.first(forecast.weather))} />
-              <Text style={styles.infoRowText}>{_.floor(forecast.main.temp)}&deg;C</Text>
-            </View>
-          );
-        })}
+      <Text style={styles.bigTemperature}>{moment(bigForecast.dt_txt.split(' ').shift()).format('D.M.YYYY')}</Text>
+      
+      <View style={styles.fucker}>
+        <ScrollView>
+          {restOfForecast.map((forecast, index) => {
+            return (
+              <View key={forecast.dt} style={{ ...styles.infoRow, marginTop: !index ? -15 : -30 }}>
+                <Text style={styles.infoRowText}>
+                  {formatTime(forecast.dt_txt.split(' ').pop())}
+                </Text>
+                <SvgUri style={styles.infoRowIcon} width="75" height="75" source={getIcon(_.first(forecast.weather))} />
+                <Text style={styles.infoRowText}>{_.floor(forecast.main.temp)}&deg;C</Text>
+              </View>
+            );
+          })}
+        </ScrollView>
       </View>
     </View>
   )
@@ -102,6 +105,7 @@ const styles = {
   infoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: -20,
   },
   bigTemperature: {
     backgroundColor: 'transparent',
@@ -131,6 +135,10 @@ const styles = {
   },
   timesContainer: {
     maxWidth: 200,
+  },
+  fucker: {
+    height: 210,
+    marginVertical: 20,
   }
 };
 
