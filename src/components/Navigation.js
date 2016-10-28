@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const Navigation = ({ weatherReport: { city } }) => {
   return (
     <View style={styles.container}>
-      {city && <Text style={styles.city}>{city.name} 28.10.2016</Text>}
+      {city && <Text style={styles.city}>{city.name}</Text>}
     </View>
   );
 };
@@ -13,7 +13,7 @@ const Navigation = ({ weatherReport: { city } }) => {
 const styles = {
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 15,
     paddingTop: 25,
