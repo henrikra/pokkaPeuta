@@ -5,13 +5,11 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 const CurrentWeather = ({ weatherReport }) => {
-  console.log('onkohan', weatherReport);
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       horizontal={true}>
       {weatherReport.forecastGroupedByDate.map((forecast) => {
-        console.log(forecast);
         return (
           <View key={forecast.date} style={styles.listItem}>
             <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
