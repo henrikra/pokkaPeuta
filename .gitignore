@@ -42,3 +42,9 @@ android/keystores/debug.keystore
 
 # Pokka Peuta
 src/config.js
+
+# VisualStudioCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
