@@ -3,7 +3,6 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 const Navigation = ({ weatherReport: { city } }) => {
-  console.log("ll", city);
   return (
     <View style={styles.container}>
       {city && <Text style={styles.city}>{city.name} 28.10.2016</Text>}
