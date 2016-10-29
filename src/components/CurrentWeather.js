@@ -6,6 +6,7 @@ import _ from 'lodash';
 import moment from 'moment';
 
 import * as actions from '../actions';
+import Loader from './Loader';
 
 const getTemperature = (temperature) => {
   const roundedTemperature = Math.floor(temperature);
@@ -86,7 +87,14 @@ class CurrentWeather extends Component {
   }
 
   render() {
-    const { weatherReport: { selectedForecast } } = this.props;
+    const { 
+      weatherReport: { selectedForecast },
+      geolocation: { isLoading },
+    } = this.props;
+
+    if (isLoading) {
+      return <Loader />;
+    }
 
     if (!selectedForecast) {
       return null;
@@ -173,8 +181,8 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ weatherReport }) => ({
-  weatherReport,
+const mapStateToProps = ({ weatherReport, geolocation }) => ({
+  weatherReport, geolocation,
 });
 
 export default connect(mapStateToProps, actions)(CurrentWeather);
