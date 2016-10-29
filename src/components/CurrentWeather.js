@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, ScrollView, Dimensions } from 'react-native';
+import { View, Text, ScrollView, Dimensions, StyleSheet } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { connect } from 'react-redux';
 import _ from 'lodash';
@@ -79,7 +79,7 @@ const formatTime = (time) => {
     .join(':');
 };
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     flex: 1,
@@ -122,7 +122,7 @@ const styles = {
     flex: 1,
     marginBottom: 10,
   },
-};
+});
 
 class CurrentWeather extends Component {
   componentDidMount() {

@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
 import * as actions from '../actions';
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
@@ -22,7 +22,7 @@ const styles = {
     fontWeight: 'bold',
     marginTop: -15,
   },
-};
+});
 
 const CurrentWeather = ({ weatherReport, selectDate }) => {
   return (

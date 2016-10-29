@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     paddingTop: 25,
@@ -13,7 +13,7 @@ const styles = {
     fontSize: 16,
     fontWeight: 'bold',
   },
-};
+});
 
 const Navigation = ({ weatherReport: { city } }) => (
   <View style={styles.container}>

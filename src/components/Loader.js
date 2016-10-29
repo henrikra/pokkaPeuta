@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, ActivityIndicator, Text } from 'react-native';
+import { View, ActivityIndicator, Text, StyleSheet } from 'react-native';
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -13,7 +13,7 @@ const styles = {
     backgroundColor: 'transparent',
     color: '#ffffff',
   },
-};
+});
 
 const Loader = () => (
   <View style={styles.container}>
