@@ -17,7 +17,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.RECEIVE_FORECAST:
+    case types.RECEIVE_FORECAST: {
       const forecastGroupedByDate = _(action.forecast.list)
         .groupBy(forecast => forecast.dt_txt.split(' ').shift())
         .map((forecast, date) => ({ date, forecast }))
@@ -41,8 +41,10 @@ export default (state = initialState, action) => {
         forecastGroupedByDate,
         city: action.forecast.city,
       };
-    case types.SELECT_DATE:
+    }
+    case types.SELECT_DATE: {
       return { ...state, selectedForecast: action.forecast };
+    }
     default:
       return state;
   }
