@@ -143,9 +143,8 @@ class SelectedWeatherReport extends Component {
       return null;
     }
     const bigForecast = _.first(selectedForecast.forecast);
-    const restOfForecast = _.tail(selectedForecast.forecast);
-
     const isToday = moment(bigForecast.dt_txt).isSame(moment(), 'day');
+    const restOfForecast = isToday ? _.tail(selectedForecast.forecast) : selectedForecast.forecast;
 
     return (
       <View style={styles.container}>
