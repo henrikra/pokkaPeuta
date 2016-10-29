@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -15,12 +15,14 @@ const styles = {
   },
 };
 
-const Navigation = ({ weatherReport: { city } }) => {
-  return (
-    <View style={styles.container}>
-      {city && <Text style={styles.city}>{city.name}</Text>}
-    </View>
-  );
+const Navigation = ({ weatherReport: { city } }) => (
+  <View style={styles.container}>
+    {city && <Text style={styles.city}>{city.name}</Text>}
+  </View>
+);
+
+Navigation.propTypes = {
+  weatherReport: PropTypes.shape({}),
 };
 
 const mapStateToProps = ({ weatherReport }) => ({
