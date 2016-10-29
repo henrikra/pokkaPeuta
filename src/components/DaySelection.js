@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CurrentWeather = ({ weatherReport, selectDate }) => {
+const DaySelection = ({ weatherReport, selectDate }) => {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -47,7 +47,7 @@ const CurrentWeather = ({ weatherReport, selectDate }) => {
   );
 };
 
-CurrentWeather.propTypes = {
+DaySelection.propTypes = {
   weatherReport: PropTypes.shape({}),
   selectDate: PropTypes.func,
 };
@@ -56,4 +56,4 @@ const mapStateToProps = ({ weatherReport }) => ({
   weatherReport,
 });
 
-export default connect(mapStateToProps, actions)(CurrentWeather);
+export default connect(mapStateToProps, actions)(DaySelection);
