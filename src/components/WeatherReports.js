@@ -26,6 +26,10 @@ const styles = StyleSheet.create({
 });
 
 const WeatherReports = ({ weatherReport, selectDate }) => {
+  if (!weatherReport.forecastGroupedByDate.length) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView
