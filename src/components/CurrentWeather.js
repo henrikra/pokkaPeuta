@@ -148,8 +148,8 @@ const styles = {
     maxWidth: 200,
   },
   fucker: {
-    height: 210,
-    marginVertical: 20,
+    flex: 1,
+    marginVertical: 10,
   }
 };
 
