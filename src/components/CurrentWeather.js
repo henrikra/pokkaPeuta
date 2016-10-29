@@ -164,11 +164,11 @@ class CurrentWeather extends Component {
           </View>
         )}
 
-        <View style={{ ...styles.fucker, marginTop: isToday ? -10 : 20 }}>
+        <View style={[styles.fucker, { marginTop: isToday ? -10 : 20 }]}>
           <ScrollView contentContainerStyle={{ width: Dimensions.get('window').width, alignItems: 'center' }}>
             {restOfForecast.map((forecast, index) => {
               return (
-                <View key={forecast.dt} style={{ ...styles.infoRow, marginTop: !index ? -15 : -30 }}>
+                <View key={forecast.dt} style={[styles.infoRow, { marginTop: !index ? -15 : -30 }]}>
                   <Text style={styles.infoRowText}>
                     {formatTime(forecast.dt_txt.split(' ').pop())}
                   </Text>
