@@ -80,17 +80,21 @@ class CurrentWeather extends Component {
     const bigForecast = _.first(selectedForecast.forecast);
     const restOfForecast = _.tail(selectedForecast.forecast);
 
+    const isToday = moment(bigForecast.dt_txt).isSame(moment(), 'day');
+
     return (
       <View style={styles.container}>
-        {moment(bigForecast.dt_txt).isSame(moment(), 'day') && (
+        <Text style={styles.bigTemperature}>
+          {moment(bigForecast.dt_txt.split(' ').shift()).format('D.M.YYYY')}
+        </Text>
+        {isToday && (
           <View style={styles.infoContainer}>
             <SvgUri style={styles.icon} width="175" height="175" source={getIcon(_.first(bigForecast.weather))} />
             <Text style={styles.temperature}>{_.floor(bigForecast.main.temp)}&deg;C</Text>
           </View>
         )}
-        <Text style={styles.bigTemperature}>{moment(bigForecast.dt_txt.split(' ').shift()).format('D.M.YYYY')}</Text>
         
-        <View style={styles.fucker}>
+        <View style={{ ...styles.fucker, marginTop: isToday ? -10 : 20 }}>
           <ScrollView contentContainerStyle={{ width: Dimensions.get('window').width, alignItems: 'center' }}>
             {restOfForecast.map((forecast, index) => {
               return (
@@ -125,7 +129,7 @@ const styles = {
     color: '#ffffff',
     fontSize: 22,
     fontWeight: 'bold',
-    marginTop: -30,
+    marginTop: 5,
   },
   temperature: {
     backgroundColor: 'transparent',
@@ -151,7 +155,7 @@ const styles = {
   },
   fucker: {
     flex: 1,
-    marginVertical: 10,
+    marginBottom: 10,
   }
 };
 
