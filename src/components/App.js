@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Image,
@@ -21,16 +21,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={createStore(reducers, applyMiddleware(thunk))}>
-        <Image source={backgroundImage} style={styles.container}>
-          <Navigation />
-          <CurrentWeather />
-          <DaySelection />
-        </Image>
-      </Provider>
-    );
-  }
-}
+export default () => (
+  <Provider store={createStore(reducers, applyMiddleware(thunk))}>
+    <Image source={backgroundImage} style={styles.container}>
+      <Navigation />
+      <CurrentWeather />
+      <DaySelection />
+    </Image>
+  </Provider>
+);
