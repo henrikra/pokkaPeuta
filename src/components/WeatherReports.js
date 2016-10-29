@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 });
 
 const WeatherReports = ({ weatherReport, selectDate }) => {
-  if (!weatherReport.forecastGroupedByDate.length) {
+  if (!weatherReport.forecasts.length) {
     return null;
   }
 
@@ -36,7 +36,7 @@ const WeatherReports = ({ weatherReport, selectDate }) => {
         contentContainerStyle={styles.scrollContainer}
         horizontal
       >
-        {weatherReport.forecastGroupedByDate.map((forecast) => {
+        {weatherReport.forecasts.map((forecast) => {
           return (
             <TouchableOpacity key={forecast.date} onPress={() => selectDate(forecast)}>
               <View style={styles.listItem}>
