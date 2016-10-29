@@ -7,6 +7,20 @@ import moment from 'moment';
 
 import * as actions from '../actions';
 
+const getTemperature = (temperature) => {
+  const roundedTemperature = Math.floor(temperature);
+  
+  if (roundedTemperature > 0) {
+    return `+ ${roundedTemperature}`;
+  }
+  else if (roundedTemperature < 0 ) {
+    return `- ${roundedTemperature}`;
+  }
+  else {
+    return roundedTemperature;
+  }
+};
+
 const ICONS = {
   nightClearSky: '01n',
   nightFewClouds: '02n',
@@ -90,7 +104,7 @@ class CurrentWeather extends Component {
         {isToday && (
           <View style={styles.infoContainer}>
             <SvgUri style={styles.icon} width="175" height="175" source={getIcon(_.first(bigForecast.weather))} />
-            <Text style={styles.temperature}>{_.floor(bigForecast.main.temp)}&deg;C</Text>
+            <Text style={styles.temperature}>{getTemperature(bigForecast.main.temp)}&deg;</Text>
           </View>
         )}
         
@@ -103,7 +117,7 @@ class CurrentWeather extends Component {
                     {formatTime(forecast.dt_txt.split(' ').pop())}
                   </Text>
                   <SvgUri style={styles.infoRowIcon} width="75" height="75" source={getIcon(_.first(forecast.weather))} />
-                  <Text style={styles.infoRowText}>{_.floor(forecast.main.temp)}&deg;C</Text>
+                  <Text style={styles.infoRowText}>{getTemperature(forecast.main.temp)}&deg;</Text>
                 </View>
               );
             })}
