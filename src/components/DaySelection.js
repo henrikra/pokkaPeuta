@@ -16,7 +16,7 @@ const CurrentWeather = ({ weatherReport, selectDate }) => {
           return (
             <TouchableOpacity key={forecast.date} onPress={() => selectDate(forecast)}>
               <View style={styles.listItem}>
-                <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
+                <SvgUri width="75" height="75" source={require('../images/Cloud.svg')} />
                 <Text style={styles.listItemText}>{moment(forecast.date).format('D.M')}</Text>
               </View>
             </TouchableOpacity>
@@ -43,9 +43,6 @@ const styles = {
     fontWeight: 'bold',
     marginTop: -15,
   },
-  listItemIcon: {
-    // marginTop: -10,
-  }
 };
 
 const mapStateToProps = ({ weatherReport }) => ({
