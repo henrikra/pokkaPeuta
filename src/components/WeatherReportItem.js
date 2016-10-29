@@ -21,11 +21,15 @@ const styles = StyleSheet.create({
   },
 });
 
+const getMostMiddle = arr => arr[_.floor(arr.length / 2)];
+
 const WeatherReportItem = ({ forecast, selectDate }) => {
+  const icon = getIcon(_.first(getMostMiddle(forecast.forecast).weather));
+
   return (
     <TouchableOpacity onPress={() => selectDate(forecast)}>
       <View style={styles.listItem}>
-        <SvgUri width="75" height="75" source={getIcon(_.first(_.first(forecast.forecast).weather))} />
+        <SvgUri width="75" height="75" source={icon} />
         <Text style={styles.listItemText}>{moment(forecast.date).format('D.M')}</Text>
       </View>
     </TouchableOpacity>
