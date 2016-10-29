@@ -10,7 +10,6 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import reducers from '../reducers';
-import WeatherReport from './WeatherReport';
 import Navigation from './Navigation';
 import CurrentWeather from './CurrentWeather';
 import DaySelection from './DaySelection';
@@ -25,7 +24,6 @@ export default class App extends Component {
         >
           <Navigation />
           <CurrentWeather />
-          <WeatherReport />
           <DaySelection />
         </Image>
       </Provider>
