@@ -68,8 +68,8 @@ const getIcon = (weather) => {
 
 const formatTime = (time) => {
   return time.split(':')
-    .map((partOfTime) => {
-      if (_.startsWith(partOfTime, '0') && _.toNumber(partOfTime[1]) > 0) {
+    .map((partOfTime, index) => {
+      if (_.startsWith(partOfTime, '0') && index === 0) {
         return partOfTime[1];
       }
 
