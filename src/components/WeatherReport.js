@@ -7,9 +7,6 @@ import OneDayWeather from './OneDayWeather';
 import Loader from './Loader';
 
 class WeatherReport extends Component {
-  componentDidMount() {
-    this.props.fetchLocation();
-  }
 
   render() {
     const { weatherReport: { forecast }, geolocation: { isLoading } } = this.props;

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, Text, ScrollView, Dimensions } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import moment from 'moment';
+
+import * as actions from '../actions';
 
 const ICONS = {
   nightClearSky: '01n',
@@ -64,38 +66,46 @@ const formatTime = (time) => {
     .join(':');
 };
 
-const CurrentWeather = ({ weatherReport: { selectedForecast } }) => {
-  if (!selectedForecast) {
-    return null;
+class CurrentWeather extends Component {
+  componentDidMount() {
+    this.props.fetchLocation();
   }
-  const bigForecast = _.first(selectedForecast.forecast);
-  const restOfForecast = _.tail(selectedForecast.forecast);
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.infoContainer}>
-        <SvgUri style={styles.icon} width="175" height="175" source={getIcon(_.first(bigForecast.weather))} />
-        <Text style={styles.temperature}>{_.floor(bigForecast.main.temp)}&deg;C</Text>
+  render() {
+    const { weatherReport: { selectedForecast } } = this.props;
+
+    if (!selectedForecast) {
+      return null;
+    }
+    const bigForecast = _.first(selectedForecast.forecast);
+    const restOfForecast = _.tail(selectedForecast.forecast);
+
+    return (
+      <View style={styles.container}>
+        <View style={styles.infoContainer}>
+          <SvgUri style={styles.icon} width="175" height="175" source={getIcon(_.first(bigForecast.weather))} />
+          <Text style={styles.temperature}>{_.floor(bigForecast.main.temp)}&deg;C</Text>
+        </View>
+        <Text style={styles.bigTemperature}>{moment(bigForecast.dt_txt.split(' ').shift()).format('D.M.YYYY')}</Text>
+        
+        <View style={styles.fucker}>
+          <ScrollView contentContainerStyle={{ width: Dimensions.get('window').width, alignItems: 'center' }}>
+            {restOfForecast.map((forecast, index) => {
+              return (
+                <View key={forecast.dt} style={{ ...styles.infoRow, marginTop: !index ? -15 : -30 }}>
+                  <Text style={styles.infoRowText}>
+                    {formatTime(forecast.dt_txt.split(' ').pop())}
+                  </Text>
+                  <SvgUri style={styles.infoRowIcon} width="75" height="75" source={getIcon(_.first(forecast.weather))} />
+                  <Text style={styles.infoRowText}>{_.floor(forecast.main.temp)}&deg;C</Text>
+                </View>
+              );
+            })}
+          </ScrollView>
+        </View>
       </View>
-      <Text style={styles.bigTemperature}>{moment(bigForecast.dt_txt.split(' ').shift()).format('D.M.YYYY')}</Text>
-      
-      <View style={styles.fucker}>
-        <ScrollView contentContainerStyle={{ width: Dimensions.get('window').width, alignItems: 'center' }}>
-          {restOfForecast.map((forecast, index) => {
-            return (
-              <View key={forecast.dt} style={{ ...styles.infoRow, marginTop: !index ? -15 : -30 }}>
-                <Text style={styles.infoRowText}>
-                  {formatTime(forecast.dt_txt.split(' ').pop())}
-                </Text>
-                <SvgUri style={styles.infoRowIcon} width="75" height="75" source={getIcon(_.first(forecast.weather))} />
-                <Text style={styles.infoRowText}>{_.floor(forecast.main.temp)}&deg;C</Text>
-              </View>
-            );
-          })}
-        </ScrollView>
-      </View>
-    </View>
-  )
+    )
+  }
 }
 
 const styles = {
@@ -146,4 +156,4 @@ const mapStateToProps = ({ weatherReport }) => ({
   weatherReport,
 });
 
-export default connect(mapStateToProps)(CurrentWeather);
+export default connect(mapStateToProps, actions)(CurrentWeather);
