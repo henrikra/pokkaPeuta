@@ -20,7 +20,7 @@ export default class App extends Component {
     return (
       <Provider store={createStore(reducers, applyMiddleware(thunk))}>
         <View style={styles.mainContainer}>
-          <Image source={require('../images/night-sky.jpeg')} style={styles.container} resizeMode={Image.resizeMode.stretch}>
+          <Image source={require('../images/night-sky-2.jpg')} style={styles.container} resizeMode={Image.resizeMode.stretch}>
             <Navigation />
             <CurrentWeather />
             <WeatherReport />

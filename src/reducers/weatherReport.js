@@ -18,7 +18,6 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case types.RECEIVE_FORECAST:
-      console.log(action);
       const forecastGroupedByDate = _(action.forecast.list)
         .groupBy(forecast => forecast.dt_txt.split(' ').shift())
         .map((forecast, date) => ({ date, forecast }))
