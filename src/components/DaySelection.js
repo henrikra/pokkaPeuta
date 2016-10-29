@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { connect } from 'react-redux';
@@ -29,7 +29,8 @@ const CurrentWeather = ({ weatherReport, selectDate }) => {
     <View>
       <ScrollView
         contentContainerStyle={styles.container}
-        horizontal={true}>
+        horizontal
+      >
         {weatherReport.forecastGroupedByDate.map((forecast) => {
           return (
             <TouchableOpacity key={forecast.date} onPress={() => selectDate(forecast)}>
@@ -42,8 +43,13 @@ const CurrentWeather = ({ weatherReport, selectDate }) => {
         })}
       </ScrollView>
     </View>
-  )
-}
+  );
+};
+
+CurrentWeather.propTypes = {
+  weatherReport: PropTypes.shape({}),
+  selectDate: PropTypes.func,
+};
 
 const mapStateToProps = ({ weatherReport }) => ({
   weatherReport,
