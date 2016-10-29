@@ -12,12 +12,8 @@ const Navigation = ({ weatherReport: { city } }) => {
 
 const styles = {
   container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 15,
     paddingTop: 25,
-    paddingBottom: 7,
   },
   city: {
     backgroundColor: 'transparent',
