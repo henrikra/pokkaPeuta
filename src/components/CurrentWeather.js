@@ -81,6 +81,51 @@ const formatTime = (time) => {
     .join(':');
 };
 
+const styles = {
+  container: {
+    alignItems: 'center',
+    flex: 1,
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: -20,
+  },
+  bigTemperature: {
+    backgroundColor: 'transparent',
+    color: '#ffffff',
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginTop: 5,
+  },
+  temperature: {
+    backgroundColor: 'transparent',
+    color: '#ffffff',
+    fontSize: 40,
+    fontWeight: 'bold',
+    marginLeft: -25,
+  },
+  icon: {
+    marginLeft: -40,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  infoRowText: {
+    backgroundColor: 'transparent',
+    color: '#ffffff',
+    width: 40,
+  },
+  timesContainer: {
+    maxWidth: 200,
+  },
+  fucker: {
+    flex: 1,
+    marginBottom: 10,
+  }
+};
+
 class CurrentWeather extends Component {
   componentDidMount() {
     this.props.fetchLocation();
@@ -136,50 +181,6 @@ class CurrentWeather extends Component {
   }
 }
 
-const styles = {
-  container: {
-    alignItems: 'center',
-    flex: 1,
-  },
-  infoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: -20,
-  },
-  bigTemperature: {
-    backgroundColor: 'transparent',
-    color: '#ffffff',
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginTop: 5,
-  },
-  temperature: {
-    backgroundColor: 'transparent',
-    color: '#ffffff',
-    fontSize: 40,
-    fontWeight: 'bold',
-    marginLeft: -25,
-  },
-  icon: {
-    marginLeft: -40,
-  },
-  infoRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  infoRowText: {
-    backgroundColor: 'transparent',
-    color: '#ffffff',
-    width: 40,
-  },
-  timesContainer: {
-    maxWidth: 200,
-  },
-  fucker: {
-    flex: 1,
-    marginBottom: 10,
-  }
-};
 
 const mapStateToProps = ({ weatherReport, geolocation }) => ({
   weatherReport, geolocation,

@@ -6,6 +6,24 @@ import moment from 'moment';
 
 import * as actions from '../actions';
 
+const styles = {
+  container: {
+    flexDirection: 'row',
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    paddingVertical: 20,
+  },
+  listItem: {
+    alignItems: 'center',
+    marginTop: -20,
+    width: 90,
+  },
+  listItemText: {
+    color: '#ffffff',
+    fontWeight: 'bold',
+    marginTop: -15,
+  },
+};
+
 const CurrentWeather = ({ weatherReport, selectDate }) => {
   return (
     <View>
@@ -26,24 +44,6 @@ const CurrentWeather = ({ weatherReport, selectDate }) => {
     </View>
   )
 }
-
-const styles = {
-  container: {
-    flexDirection: 'row',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    paddingVertical: 20,
-  },
-  listItem: {
-    alignItems: 'center',
-    marginTop: -20,
-    width: 90,
-  },
-  listItemText: {
-    color: '#ffffff',
-    fontWeight: 'bold',
-    marginTop: -15,
-  },
-};
 
 const mapStateToProps = ({ weatherReport }) => ({
   weatherReport,

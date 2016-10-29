@@ -2,14 +2,6 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-const Navigation = ({ weatherReport: { city } }) => {
-  return (
-    <View style={styles.container}>
-      {city && <Text style={styles.city}>{city.name}</Text>}
-    </View>
-  );
-};
-
 const styles = {
   container: {
     alignItems: 'center',
@@ -21,6 +13,14 @@ const styles = {
     fontSize: 16,
     fontWeight: 'bold',
   },
+};
+
+const Navigation = ({ weatherReport: { city } }) => {
+  return (
+    <View style={styles.container}>
+      {city && <Text style={styles.city}>{city.name}</Text>}
+    </View>
+  );
 };
 
 const mapStateToProps = ({ weatherReport }) => ({

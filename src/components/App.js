@@ -13,6 +13,14 @@ import CurrentWeather from './CurrentWeather';
 import DaySelection from './DaySelection';
 import backgroundImage from '../images/night-sky-2.jpg';
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    height: null,
+    width: null,
+  },
+});
+
 export default class App extends Component {
   render() {
     return (
@@ -26,11 +34,3 @@ export default class App extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    height: null,
-    width: null,
-  },
-});
