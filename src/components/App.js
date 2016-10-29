@@ -11,15 +11,13 @@ import reducers from '../reducers';
 import Navigation from './Navigation';
 import CurrentWeather from './CurrentWeather';
 import DaySelection from './DaySelection';
+import backgroundImage from '../images/night-sky-2.jpg';
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={createStore(reducers, applyMiddleware(thunk))}>
-        <Image
-          source={require('../images/night-sky-2.jpg')}
-          style={styles.container}
-        >
+        <Image source={backgroundImage} style={styles.container}>
           <Navigation />
           <CurrentWeather />
           <DaySelection />
