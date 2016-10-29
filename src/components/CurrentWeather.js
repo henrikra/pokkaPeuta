@@ -41,8 +41,6 @@ const ICONS = {
 
 const getIcon = (weather) => {
   switch (weather.icon) {
-    case ICONS.dayRain:
-      return require('../images/Cloud-Rain.svg');
     case ICONS.nightRain:
       return require('../images/Cloud-Rain-Moon.svg');
     case ICONS.dayRain:
@@ -63,6 +61,8 @@ const getIcon = (weather) => {
       return require('../images/Sun.svg');
     case ICONS.nightClearSky:
       return require('../images/Moon.svg');
+    default:
+      return null;
   }
 };
 
