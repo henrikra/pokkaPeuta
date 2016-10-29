@@ -3,7 +3,6 @@ import _ from 'lodash';
 import types from '../constants/actionTypes';
 
 const initialState = {
-  forecast: [],
   forecastGroupedByDate: [],
   selectedForecast: null,
 };
