@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
-  View,
-  Image
+  Image,
 } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -18,7 +16,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={createStore(reducers, applyMiddleware(thunk))}>
-        <Image 
+        <Image
           source={require('../images/night-sky-2.jpg')}
           style={styles.container}
         >

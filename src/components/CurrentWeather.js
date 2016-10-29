@@ -10,7 +10,7 @@ import Loader from './Loader';
 
 const getTemperature = (temperature) => {
   const roundedTemperature = Math.floor(temperature);
-  
+
   if (roundedTemperature > 0) {
     return `+ ${roundedTemperature}`;
   }
@@ -87,7 +87,7 @@ class CurrentWeather extends Component {
   }
 
   render() {
-    const { 
+    const {
       weatherReport: { selectedForecast },
       geolocation: { isLoading },
     } = this.props;
@@ -115,7 +115,7 @@ class CurrentWeather extends Component {
             <Text style={styles.temperature}>{getTemperature(bigForecast.main.temp)}&deg;</Text>
           </View>
         )}
-        
+
         <View style={{ ...styles.fucker, marginTop: isToday ? -10 : 20 }}>
           <ScrollView contentContainerStyle={{ width: Dimensions.get('window').width, alignItems: 'center' }}>
             {restOfForecast.map((forecast, index) => {
