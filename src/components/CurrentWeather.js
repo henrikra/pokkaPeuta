@@ -13,13 +13,11 @@ const getTemperature = (temperature) => {
 
   if (roundedTemperature > 0) {
     return `+ ${roundedTemperature}`;
-  }
-  else if (roundedTemperature < 0 ) {
+  } else if (roundedTemperature < 0) {
     return `- ${roundedTemperature}`;
   }
-  else {
-    return roundedTemperature;
-  }
+
+  return roundedTemperature;
 };
 
 const ICONS = {
