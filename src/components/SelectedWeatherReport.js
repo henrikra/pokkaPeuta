@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class CurrentWeather extends Component {
+class SelectedWeatherReport extends Component {
   componentDidMount() {
     this.props.fetchLocation();
   }
@@ -189,7 +189,7 @@ class CurrentWeather extends Component {
   }
 }
 
-CurrentWeather.propTypes = {
+SelectedWeatherReport.propTypes = {
   weatherReport: PropTypes.shape({}),
   geolocation: PropTypes.shape({}),
   fetchLocation: PropTypes.func,
@@ -199,4 +199,4 @@ const mapStateToProps = ({ weatherReport, geolocation }) => ({
   weatherReport, geolocation,
 });
 
-export default connect(mapStateToProps, actions)(CurrentWeather);
+export default connect(mapStateToProps, actions)(SelectedWeatherReport);

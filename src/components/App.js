@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 
 import reducers from '../reducers';
 import Navigation from './Navigation';
-import CurrentWeather from './CurrentWeather';
+import SelectedWeatherReport from './SelectedWeatherReport';
 import DaySelection from './DaySelection';
 import backgroundImage from '../images/night-sky-2.jpg';
 
@@ -25,7 +25,7 @@ export default () => (
   <Provider store={createStore(reducers, applyMiddleware(thunk))}>
     <Image source={backgroundImage} style={styles.container}>
       <Navigation />
-      <CurrentWeather />
+      <SelectedWeatherReport />
       <DaySelection />
     </Image>
   </Provider>
