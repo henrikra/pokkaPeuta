@@ -8,20 +8,22 @@ import * as actions from '../actions';
 
 const CurrentWeather = ({ weatherReport, selectDate }) => {
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      horizontal={true}>
-      {weatherReport.forecastGroupedByDate.map((forecast) => {
-        return (
-          <TouchableOpacity key={forecast.date} onPress={() => selectDate(forecast)}>
-            <View style={styles.listItem}>
-              <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
-              <Text style={styles.listItemText}>{moment(forecast.date).format('D.M')}</Text>
-            </View>
-          </TouchableOpacity>
-        );
-      })}
-    </ScrollView>
+    <View>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        horizontal={true}>
+        {weatherReport.forecastGroupedByDate.map((forecast) => {
+          return (
+            <TouchableOpacity key={forecast.date} onPress={() => selectDate(forecast)}>
+              <View style={styles.listItem}>
+                <SvgUri style={styles.listItemIcon} width="75" height="75" source={require('../images/Cloud.svg')} />
+                <Text style={styles.listItemText}>{moment(forecast.date).format('D.M')}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </ScrollView>
+    </View>
   )
 }
 

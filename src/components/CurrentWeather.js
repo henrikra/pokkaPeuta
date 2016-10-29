@@ -111,6 +111,7 @@ class CurrentWeather extends Component {
 const styles = {
   container: {
     alignItems: 'center',
+    flex: 1,
   },
   infoContainer: {
     flexDirection: 'row',
