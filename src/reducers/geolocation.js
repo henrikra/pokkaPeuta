@@ -6,7 +6,7 @@ const initialState = {
   isLoading: false,
 };
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_LOCATION:
       return { ...state, isLoading: true };
@@ -14,11 +14,11 @@ export default function(state = initialState, action) {
       return { ...state, isLoading: false };
     case types.RECEIVE_LOCATION:
       return {
-        ...state, 
+        ...state,
         longitude: action.coords.longitude,
         latitude: action.coords.latitude,
       };
     default:
       return state;
   }
-}
+};
