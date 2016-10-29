@@ -19,14 +19,15 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={createStore(reducers, applyMiddleware(thunk))}>
-        <View style={styles.mainContainer}>
-          <Image source={require('../images/night-sky-2.jpg')} style={styles.container} resizeMode={Image.resizeMode.stretch}>
-            <Navigation />
-            <CurrentWeather />
-            <WeatherReport />
-            <DaySelection />
-          </Image>
-        </View>
+        <Image 
+          source={require('../images/night-sky-2.jpg')}
+          style={styles.container}
+        >
+          <Navigation />
+          <CurrentWeather />
+          <WeatherReport />
+          <DaySelection />
+        </Image>
       </Provider>
     );
   }
@@ -37,9 +38,5 @@ const styles = StyleSheet.create({
     flex: 1,
     height: null,
     width: null,
-  },
-  mainContainer: {
-    flex: 1,
-
   },
 });
