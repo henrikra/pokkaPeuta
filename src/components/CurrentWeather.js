@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, Text, ScrollView, Dimensions } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { connect } from 'react-redux';
@@ -44,29 +44,29 @@ const ICONS = {
 const getIcon = (weather) => {
   switch (weather.icon) {
     case ICONS.dayRain:
-      return require("../images/Cloud-Rain.svg");
+      return require('../images/Cloud-Rain.svg');
     case ICONS.nightRain:
-      return require("../images/Cloud-Rain-Moon.svg");
+      return require('../images/Cloud-Rain-Moon.svg');
     case ICONS.dayRain:
-      return require("../images/Cloud-Rain.svg");
+      return require('../images/Cloud-Rain.svg');
     case ICONS.nightFewClouds:
-      return require("../images/Cloud-Moon.svg");
+      return require('../images/Cloud-Moon.svg');
     case ICONS.dayFewClouds:
-      return require("../images/Cloud-Sun.svg");
+      return require('../images/Cloud-Sun.svg');
     case ICONS.nightBrokenClouds:
-      return require("../images/Cloud.svg");
+      return require('../images/Cloud.svg');
     case ICONS.dayBrokenClouds:
-      return require("../images/Cloud.svg");
+      return require('../images/Cloud.svg');
     case ICONS.dayScatteredClouds:
-      return require("../images/Cloud.svg");
+      return require('../images/Cloud.svg');
     case ICONS.nightScatteredClouds:
-      return require("../images/Cloud.svg");
+      return require('../images/Cloud.svg');
     case ICONS.dayClearSky:
-      return require("../images/Sun.svg");
+      return require('../images/Sun.svg');
     case ICONS.nightClearSky:
-      return require("../images/Moon.svg");
+      return require('../images/Moon.svg');
   }
-}
+};
 
 const formatTime = (time) => {
   return time.split(':')
@@ -75,7 +75,7 @@ const formatTime = (time) => {
         return partOfTime[1];
       }
 
-      return partOfTime
+      return partOfTime;
     })
     .slice(0, -1)
     .join(':');
@@ -123,7 +123,7 @@ const styles = {
   fucker: {
     flex: 1,
     marginBottom: 10,
-  }
+  },
 };
 
 class CurrentWeather extends Component {
@@ -156,7 +156,12 @@ class CurrentWeather extends Component {
         </Text>
         {isToday && (
           <View style={styles.infoContainer}>
-            <SvgUri style={styles.icon} width="175" height="175" source={getIcon(_.first(bigForecast.weather))} />
+            <SvgUri
+              style={styles.icon}
+              width="175"
+              height="175"
+              source={getIcon(_.first(bigForecast.weather))}
+            />
             <Text style={styles.temperature}>{getTemperature(bigForecast.main.temp)}&deg;</Text>
           </View>
         )}
@@ -169,7 +174,12 @@ class CurrentWeather extends Component {
                   <Text style={styles.infoRowText}>
                     {formatTime(forecast.dt_txt.split(' ').pop())}
                   </Text>
-                  <SvgUri style={styles.infoRowIcon} width="75" height="75" source={getIcon(_.first(forecast.weather))} />
+                  <SvgUri
+                    style={styles.infoRowIcon}
+                    width="75"
+                    height="75"
+                    source={getIcon(_.first(forecast.weather))}
+                  />
                   <Text style={styles.infoRowText}>{getTemperature(forecast.main.temp)}&deg;</Text>
                 </View>
               );
@@ -177,10 +187,15 @@ class CurrentWeather extends Component {
           </ScrollView>
         </View>
       </View>
-    )
+    );
   }
 }
 
+CurrentWeather.propTypes = {
+  weatherReport: PropTypes.shape({}),
+  geolocation: PropTypes.shape({}),
+  fetchLocation: PropTypes.func,
+};
 
 const mapStateToProps = ({ weatherReport, geolocation }) => ({
   weatherReport, geolocation,
