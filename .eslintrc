@@ -8,5 +8,9 @@
     "rules": {
       "arrow-body-style": "off",
       "react/jsx-filename-extension": "off"
+    },
+    "globals": {
+      "navigator": true,
+      "fetch": true
     }
 }
