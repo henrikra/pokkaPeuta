@@ -8,8 +8,9 @@ import * as actions from '../actions';
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  scrollContainer: {
     paddingVertical: 20,
   },
   listItem: {
@@ -26,9 +27,9 @@ const styles = StyleSheet.create({
 
 const CurrentWeather = ({ weatherReport, selectDate }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <ScrollView
-        contentContainerStyle={styles.container}
+        contentContainerStyle={styles.scrollContainer}
         horizontal
       >
         {weatherReport.forecastGroupedByDate.map((forecast) => {
