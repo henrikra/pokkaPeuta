@@ -82,10 +82,12 @@ class CurrentWeather extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.infoContainer}>
-          <SvgUri style={styles.icon} width="175" height="175" source={getIcon(_.first(bigForecast.weather))} />
-          <Text style={styles.temperature}>{_.floor(bigForecast.main.temp)}&deg;C</Text>
-        </View>
+        {moment(bigForecast.dt_txt).isSame(moment(), 'day') && (
+          <View style={styles.infoContainer}>
+            <SvgUri style={styles.icon} width="175" height="175" source={getIcon(_.first(bigForecast.weather))} />
+            <Text style={styles.temperature}>{_.floor(bigForecast.main.temp)}&deg;C</Text>
+          </View>
+        )}
         <Text style={styles.bigTemperature}>{moment(bigForecast.dt_txt.split(' ').shift()).format('D.M.YYYY')}</Text>
         
         <View style={styles.fucker}>
