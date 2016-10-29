@@ -10,7 +10,7 @@ import thunk from 'redux-thunk';
 import reducers from '../reducers';
 import Navigation from './Navigation';
 import SelectedWeatherReport from './SelectedWeatherReport';
-import DaySelection from './DaySelection';
+import WeatherReports from './WeatherReports';
 import backgroundImage from '../images/night-sky-2.jpg';
 
 const styles = StyleSheet.create({
@@ -26,7 +26,7 @@ export default () => (
     <Image source={backgroundImage} style={styles.container}>
       <Navigation />
       <SelectedWeatherReport />
-      <DaySelection />
+      <WeatherReports />
     </Image>
   </Provider>
 );
