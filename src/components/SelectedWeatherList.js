@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     width: 40,
   },
-  fucker: {
+  container: {
     flex: 1,
     marginBottom: 10,
   },
@@ -65,7 +65,7 @@ class SelectedWeatherList extends Component {
     const { selectedForecast } = this.props;
 
     return (
-      <View style={[styles.fucker, { marginTop: isToday(selectedForecast) ? -10 : 20 }]}>
+      <View style={[styles.container, { marginTop: isToday(selectedForecast) ? -10 : 20 }]}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={(forecast, sectionId, rowId) => {
