@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 
 const ICONS = {
   nightClearSky: '01n',
@@ -60,5 +61,22 @@ export function getIcon(forecast) {
     default:
       return null;
   }
+}
+
+export function getTemperature(temperature) {
+  const roundedTemperature = Math.floor(temperature);
+
+  if (roundedTemperature > 0) {
+    return `+ ${roundedTemperature}`;
+  } else if (roundedTemperature < 0) {
+    return `- ${roundedTemperature}`;
+  }
+
+  return roundedTemperature;
+}
+
+export function isToday(selectedForecast) {
+  const bigForecast = _.first(selectedForecast.forecast);
+  return moment(bigForecast.dt_txt).isSame(moment(), 'day');
 }
 
