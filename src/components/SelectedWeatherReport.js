@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, ScrollView, Dimensions, StyleSheet } from 'react-native';
+import { View, Text, Dimensions, StyleSheet, ListView } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import { connect } from 'react-redux';
 import _ from 'lodash';
@@ -79,9 +79,35 @@ const styles = StyleSheet.create({
   },
 });
 
+const isToday = (selectedForecast) => {
+  const bigForecast = _.first(selectedForecast.forecast);
+  return moment(bigForecast.dt_txt).isSame(moment(), 'day');
+};
+
 class SelectedWeatherReport extends Component {
+  constructor() {
+    super();
+
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => {
+      return r1.dt_txt !== r2.dt_txt;
+    } });
+    this.state = {
+      dataSource: ds.cloneWithRows([]),
+    };
+  }
+
   componentDidMount() {
     this.props.fetchLocation();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.weatherReport.selectedForecast) {
+      const { weatherReport: { selectedForecast } } = nextProps;
+      const newRows = isToday(selectedForecast) ? _.tail(selectedForecast.forecast) : selectedForecast.forecast;
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(newRows),
+      });
+    }
   }
 
   render() {
@@ -98,15 +124,14 @@ class SelectedWeatherReport extends Component {
       return null;
     }
     const bigForecast = _.first(selectedForecast.forecast);
-    const isToday = moment(bigForecast.dt_txt).isSame(moment(), 'day');
-    const restOfForecast = isToday ? _.tail(selectedForecast.forecast) : selectedForecast.forecast;
+    const isTodayReally = isToday(selectedForecast);
 
     return (
       <View style={styles.container}>
         <Text style={styles.bigTemperature}>
           {moment(bigForecast.dt_txt.split(' ').shift()).format('D.M.YYYY')}
         </Text>
-        {isToday && (
+        {isTodayReally && (
           <View style={styles.infoContainer}>
             <SvgUri
               style={styles.icon}
@@ -118,15 +143,17 @@ class SelectedWeatherReport extends Component {
           </View>
         )}
 
-        <View style={[styles.fucker, { marginTop: isToday ? -10 : 20 }]}>
-          <ScrollView contentContainerStyle={{ width: Dimensions.get('window').width, alignItems: 'center' }}>
-            {restOfForecast.map((forecast, index) => {
+        <View style={[styles.fucker, { marginTop: isTodayReally ? -10 : 20 }]}>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={(forecast, sectionId, rowId) => {
               return (
-                <View key={forecast.dt} style={[styles.infoRow, { marginTop: !index ? -15 : -30 }]}>
+                <View style={[styles.infoRow, { marginTop: rowId === '0' ? -15 : -30 }]}>
                   <Text style={styles.infoRowText}>
                     {formatTime(forecast.dt_txt.split(' ').pop())}
                   </Text>
                   <SvgUri
+                    key={getIcon(forecast)}
                     style={styles.infoRowIcon}
                     width="75"
                     height="75"
@@ -135,8 +162,9 @@ class SelectedWeatherReport extends Component {
                   <Text style={styles.infoRowText}>{getTemperature(forecast.main.temp)}&deg;</Text>
                 </View>
               );
-            })}
-          </ScrollView>
+            }}
+            contentContainerStyle={{ width: Dimensions.get('window').width, alignItems: 'center' }}
+          />
         </View>
       </View>
     );
