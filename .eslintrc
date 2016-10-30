@@ -7,7 +7,8 @@
     ],
     "rules": {
       "arrow-body-style": "off",
-      "react/jsx-filename-extension": "off"
+      "react/jsx-filename-extension": "off",
+      "global-require": "off"
     },
     "globals": {
       "navigator": true,
