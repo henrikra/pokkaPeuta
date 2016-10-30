@@ -42,9 +42,9 @@ export function getIcon(forecast) {
     case ICONS.nightFewClouds:
       return require('../images/Cloud-Moon.svg');
     case ICONS.dayScatteredClouds:
-      return require('../images/Cloud.svg');
+      return require('../images/Cloud-Sun.svg');
     case ICONS.nightScatteredClouds:
-      return require('../images/Cloud.svg');
+      return require('../images/Cloud-Moon.svg');
     case ICONS.dayBrokenClouds:
       return require('../images/Cloud.svg');
     case ICONS.nightBrokenClouds:
