@@ -21,11 +21,9 @@ const ICONS = {
   dayMist: '50d',
 };
 
-const renderRainIfEnough = (forecast, weatherIconId) => {
-  const isDayTime = _.endsWith(weatherIconId, 'd');
-
+const renderRainIfEnough = (forecast) => {
   if (_.get(forecast, 'rain.3h') > 0.1) {
-    return isDayTime ? require('../images/Cloud-Rain.svg') : require('../images/Cloud-Rain-Moon.svg');
+    return require('../images/Cloud-Rain.svg');
   }
 
   return require('../images/Cloud.svg');
@@ -52,9 +50,9 @@ export function getIcon(forecast) {
     case ICONS.nightBrokenClouds:
       return require('../images/Cloud.svg');
     case ICONS.dayRain:
-      return renderRainIfEnough(forecast, weatherIconId);
+      return renderRainIfEnough(forecast);
     case ICONS.nightRain:
-      return renderRainIfEnough(forecast, weatherIconId);
+      return renderRainIfEnough(forecast);
     case ICONS.daySnow:
       return require('../images/Cloud-Snow.svg');
     case ICONS.nightSnow:
