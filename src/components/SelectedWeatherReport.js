@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: -20,
   },
-  bigTemperature: {
+  date: {
     backgroundColor: 'transparent',
     color: '#ffffff',
     fontSize: 22,
@@ -61,7 +61,7 @@ class SelectedWeatherReport extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.bigTemperature}>
+        <Text style={styles.date}>
           {moment(bigForecast.dt_txt.split(' ').shift()).format('D.M.YYYY')}
         </Text>
         {isToday(selectedForecast) && (
