@@ -35,26 +35,26 @@ export function getIcon(forecast) {
   const weatherIconId = _.first(forecast.weather).icon;
 
   switch (weatherIconId) {
-    case ICONS.nightRain:
-      return renderRainIfEnough(forecast, weatherIconId);
-    case ICONS.dayRain:
-      return renderRainIfEnough(forecast, weatherIconId);
-    case ICONS.nightFewClouds:
-      return require('../images/Cloud-Moon.svg');
-    case ICONS.dayFewClouds:
-      return require('../images/Cloud-Sun.svg');
-    case ICONS.nightBrokenClouds:
-      return require('../images/Cloud.svg');
-    case ICONS.dayBrokenClouds:
-      return require('../images/Cloud.svg');
-    case ICONS.dayScatteredClouds:
-      return require('../images/Cloud.svg');
-    case ICONS.nightScatteredClouds:
-      return require('../images/Cloud.svg');
     case ICONS.dayClearSky:
       return require('../images/Sun.svg');
     case ICONS.nightClearSky:
       return require('../images/Moon.svg');
+    case ICONS.dayFewClouds:
+      return require('../images/Cloud-Sun.svg');
+    case ICONS.nightFewClouds:
+      return require('../images/Cloud-Moon.svg');
+    case ICONS.dayScatteredClouds:
+      return require('../images/Cloud.svg');
+    case ICONS.nightScatteredClouds:
+      return require('../images/Cloud.svg');
+    case ICONS.dayBrokenClouds:
+      return require('../images/Cloud.svg');
+    case ICONS.nightBrokenClouds:
+      return require('../images/Cloud.svg');
+    case ICONS.dayRain:
+      return renderRainIfEnough(forecast, weatherIconId);
+    case ICONS.nightRain:
+      return renderRainIfEnough(forecast, weatherIconId);
     case ICONS.daySnow:
       return require('../images/Cloud-Snow.svg');
     case ICONS.nightSnow:
