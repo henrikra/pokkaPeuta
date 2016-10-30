@@ -88,9 +88,7 @@ class SelectedWeatherReport extends Component {
   constructor() {
     super();
 
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => {
-      return r1.dt_txt !== r2.dt_txt;
-    } });
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.dt !== r2.dt });
     this.state = {
       dataSource: ds.cloneWithRows([]),
     };
@@ -103,7 +101,9 @@ class SelectedWeatherReport extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.weatherReport.selectedForecast) {
       const { weatherReport: { selectedForecast } } = nextProps;
-      const newRows = isToday(selectedForecast) ? _.tail(selectedForecast.forecast) : selectedForecast.forecast;
+      const newRows = isToday(selectedForecast)
+        ? _.tail(selectedForecast.forecast)
+        : selectedForecast.forecast;
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(newRows),
       });
