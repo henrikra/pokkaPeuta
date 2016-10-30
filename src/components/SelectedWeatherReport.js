@@ -112,7 +112,7 @@ class SelectedWeatherReport extends Component {
               style={styles.icon}
               width="175"
               height="175"
-              source={getIcon(_.first(bigForecast.weather))}
+              source={getIcon(bigForecast)}
             />
             <Text style={styles.temperature}>{getTemperature(bigForecast.main.temp)}&deg;</Text>
           </View>
@@ -130,7 +130,7 @@ class SelectedWeatherReport extends Component {
                     style={styles.infoRowIcon}
                     width="75"
                     height="75"
-                    source={getIcon(_.first(forecast.weather))}
+                    source={getIcon(forecast)}
                   />
                   <Text style={styles.infoRowText}>{getTemperature(forecast.main.temp)}&deg;</Text>
                 </View>

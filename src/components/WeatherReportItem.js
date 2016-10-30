@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 const getMostMiddle = arr => arr[_.floor(arr.length / 2)];
 
 const WeatherReportItem = ({ forecast, selectDate }) => {
-  const icon = getIcon(_.first(getMostMiddle(forecast.forecast).weather));
+  const icon = getIcon(getMostMiddle(forecast.forecast));
 
   return (
     <TouchableOpacity onPress={() => selectDate(forecast)}>

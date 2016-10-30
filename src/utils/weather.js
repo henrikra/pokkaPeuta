@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const ICONS = {
   nightClearSky: '01n',
   nightFewClouds: '02n',
@@ -14,15 +16,29 @@ const ICONS = {
   dayShowerRain: '09d',
   dayRain: '10d',
   dayThunderStorm: '11d',
+  daySnow: '13d',
+  nightSnow: '13n',
   dayMist: '50d',
 };
 
-export function getIcon(weather) {
-  switch (weather.icon) {
+const renderRainIfEnough = (forecast, weatherIconId) => {
+  const isDayTime = _.endsWith(weatherIconId, 'd');
+
+  if (_.get(forecast, 'rain.3h') > 0.1) {
+    return isDayTime ? require('../images/Cloud-Rain.svg') : require('../images/Cloud-Rain-Moon.svg');
+  }
+
+  return require('../images/Cloud.svg');
+};
+
+export function getIcon(forecast) {
+  const weatherIconId = _.first(forecast.weather).icon;
+
+  switch (weatherIconId) {
     case ICONS.nightRain:
-      return require('../images/Cloud-Rain-Moon.svg');
+      return renderRainIfEnough(forecast, weatherIconId);
     case ICONS.dayRain:
-      return require('../images/Cloud-Rain.svg');
+      return renderRainIfEnough(forecast, weatherIconId);
     case ICONS.nightFewClouds:
       return require('../images/Cloud-Moon.svg');
     case ICONS.dayFewClouds:
@@ -39,6 +55,10 @@ export function getIcon(weather) {
       return require('../images/Sun.svg');
     case ICONS.nightClearSky:
       return require('../images/Moon.svg');
+    case ICONS.daySnow:
+      return require('../images/Cloud-Snow.svg');
+    case ICONS.nightSnow:
+      return require('../images/Cloud-Snow.svg');
     default:
       return null;
   }
