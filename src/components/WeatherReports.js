@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
   },
   scrollContainer: {
-    paddingVertical: 20,
+    paddingTop: 20,
+    paddingBottom: 30,
   },
 });
 
