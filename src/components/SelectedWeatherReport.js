@@ -23,9 +23,6 @@ const styles = StyleSheet.create({
   date: {
     backgroundColor: 'transparent',
     color: '#ffffff',
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginTop: 5,
   },
   temperature: {
     backgroundColor: 'transparent',
