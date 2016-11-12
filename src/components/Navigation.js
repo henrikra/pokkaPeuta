@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   city: {
     backgroundColor: 'transparent',
     color: '#ffffff',
-    fontSize: 24,
+    fontSize: 26,
   },
 });
 
