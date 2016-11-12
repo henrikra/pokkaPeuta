@@ -30,6 +30,14 @@ const renderRainIfEnough = (forecast) => {
   return require('../images/Cloud.svg');
 };
 
+const renderSnowIfEnough = (forecast) => {
+  if (_.get(forecast, 'snow.3h') > 0.1) {
+    return require('../images/Cloud-Snow.svg');
+  }
+
+  return require('../images/Cloud.svg');
+};
+
 export function getIcon(forecast) {
   const weatherIconId = _.first(forecast.weather).icon;
 
@@ -55,9 +63,9 @@ export function getIcon(forecast) {
     case ICONS.nightRain:
       return renderRainIfEnough(forecast);
     case ICONS.daySnow:
-      return require('../images/Cloud-Snow.svg');
+      return renderSnowIfEnough(forecast);
     case ICONS.nightSnow:
-      return require('../images/Cloud-Snow.svg');
+      return renderSnowIfEnough(forecast);
     default:
       return null;
   }
