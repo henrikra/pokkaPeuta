@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import SvgUri from 'react-native-svg-uri';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -9,14 +9,13 @@ import * as actions from '../actions';
 import { getIcon } from '../utils/weather';
 
 const styles = StyleSheet.create({
-  listItem: {
+  container: {
     alignItems: 'center',
     marginTop: -20,
     width: 90,
   },
-  listItemText: {
+  date: {
     color: '#ffffff',
-    fontWeight: 'bold',
     marginTop: -15,
   },
 });
@@ -27,11 +26,11 @@ const WeatherReportItem = ({ forecast, selectDate }) => {
   const icon = getIcon(getMostMiddle(forecast.forecast));
 
   return (
-    <TouchableOpacity onPress={() => selectDate(forecast)}>
-      <View style={styles.listItem}>
-        <SvgUri width="75" height="75" source={icon} />
-        <Text style={styles.listItemText}>{moment(forecast.date).format('D.M')}</Text>
-      </View>
+    <TouchableOpacity onPress={() => selectDate(forecast)} style={styles.container}>
+      <SvgUri width="75" height="75" source={icon} />
+      <Text style={styles.date}>
+        {moment(forecast.date).format('dddd').substr(0, 3).toUpperCase()}
+      </Text>
     </TouchableOpacity>
   );
 };
