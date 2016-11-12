@@ -25,7 +25,11 @@ const WeatherReports = ({ weatherReport }) => {
         horizontal
       >
         {weatherReport.forecasts.map(forecast =>
-          <WeatherReportItem key={forecast.date} forecast={forecast} />
+          <WeatherReportItem
+            key={forecast.date}
+            forecast={forecast}
+            isActive={weatherReport.selectedForecast.date === forecast.date}
+          />
         )}
       </ScrollView>
     </View>

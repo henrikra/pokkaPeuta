@@ -14,6 +14,9 @@ const styles = StyleSheet.create({
     marginTop: -20,
     width: 90,
   },
+  pointerContainer: {
+    minHeight: 25,
+  },
   pointer: {
     width: 0,
     height: 0,
@@ -36,12 +39,14 @@ const styles = StyleSheet.create({
 
 const getMostMiddle = arr => arr[_.floor(arr.length / 2)];
 
-const WeatherReportItem = ({ forecast, selectDate }) => {
+const WeatherReportItem = ({ forecast, selectDate, isActive }) => {
   const icon = getIcon(getMostMiddle(forecast.forecast));
 
   return (
     <TouchableOpacity onPress={() => selectDate(forecast)} style={styles.container}>
-      <View style={styles.pointer} />
+      <View style={styles.pointerContainer}>
+        {isActive && <View style={styles.pointer} />}
+      </View>
       <SvgUri width="75" height="75" source={icon} />
       <Text style={styles.date}>
         {moment(forecast.date).format('dddd').substr(0, 3).toUpperCase()}
@@ -53,6 +58,7 @@ const WeatherReportItem = ({ forecast, selectDate }) => {
 WeatherReportItem.propTypes = {
   forecast: PropTypes.shape({}),
   selectDate: PropTypes.func.isRequired,
+  isActive: PropTypes.bool,
 };
 
 export default connect(null, actions)(WeatherReportItem);
