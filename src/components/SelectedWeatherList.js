@@ -68,6 +68,7 @@ class SelectedWeatherList extends Component {
       <View style={[styles.container, { marginTop: isToday(selectedForecast) ? -10 : 20 }]}>
         <ListView
           dataSource={this.state.dataSource}
+          enableEmptySections
           renderRow={(forecast, sectionId, rowId) => {
             return (
               <View style={[styles.infoRow, { marginTop: rowId === '0' ? -15 : -30 }]}>
