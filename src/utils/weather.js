@@ -76,7 +76,7 @@ export function getTemperature(temperature) {
 }
 
 export function isToday(selectedForecast) {
-  const bigForecast = _.first(selectedForecast.forecast);
-  return moment(bigForecast.dt_txt).isSame(moment(), 'day');
+  const firstForecast = _.first(selectedForecast.forecast);
+  return moment(firstForecast.dt_txt).isSame(moment(), 'day');
 }
 
