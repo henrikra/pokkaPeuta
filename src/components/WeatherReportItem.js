@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderLeftWidth: 5,
     borderRightWidth: 5,
-    borderTopWidth: 10,
+    borderTopWidth: 5,
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
     borderTopColor: '#ffffff',
