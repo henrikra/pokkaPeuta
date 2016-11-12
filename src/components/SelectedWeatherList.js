@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import SvgUri from 'react-native-svg-uri';
 
-import { getIcon, isToday, getTemperature } from '../utils/weather';
+import { getIcon, getTemperature } from '../utils/weather';
 
 const formatTime = (time) => {
   return time.split(':')
@@ -32,14 +32,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: 10,
+    marginTop: 40,
   },
 });
-
-const getRows = (selectedForecast) => {
-  return isToday(selectedForecast)
-    ? _.tail(selectedForecast.forecast)
-    : selectedForecast.forecast;
-};
 
 class SelectedWeatherList extends Component {
   constructor(props) {
@@ -47,25 +42,23 @@ class SelectedWeatherList extends Component {
 
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.dt !== r2.dt });
     this.state = {
-      dataSource: ds.cloneWithRows(getRows(props.selectedForecast)),
+      dataSource: ds.cloneWithRows(props.selectedForecast.forecast),
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.weatherReport.selectedForecast) {
       const { weatherReport: { selectedForecast } } = nextProps;
-      const newRows = getRows(selectedForecast);
+
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(newRows),
+        dataSource: this.state.dataSource.cloneWithRows(selectedForecast.forecast),
       });
     }
   }
 
   render() {
-    const { selectedForecast } = this.props;
-
     return (
-      <View style={[styles.container, { marginTop: isToday(selectedForecast) ? -10 : 20 }]}>
+      <View style={styles.container}>
         <ListView
           dataSource={this.state.dataSource}
           enableEmptySections
@@ -95,7 +88,9 @@ class SelectedWeatherList extends Component {
 
 SelectedWeatherList.propTypes = {
   geolocation: PropTypes.shape({}),
-  selectedForecast: PropTypes.shape({}),
+  selectedForecast: PropTypes.shape({
+    forecast: PropTypes.array,
+  }),
 };
 
 const mapStateToProps = ({ weatherReport }) => ({

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    marginTop: 60,
+    marginTop: 100,
   },
   city: {
     backgroundColor: 'transparent',
