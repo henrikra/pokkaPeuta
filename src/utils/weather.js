@@ -69,7 +69,7 @@ export function getTemperature(temperature) {
   if (roundedTemperature > 0) {
     return `+ ${roundedTemperature}`;
   } else if (roundedTemperature < 0) {
-    return `- ${roundedTemperature}`;
+    return `- ${Math.abs(roundedTemperature)}`;
   }
 
   return roundedTemperature;
