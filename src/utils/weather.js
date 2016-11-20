@@ -22,8 +22,10 @@ const ICONS = {
   dayMist: '50d',
 };
 
+export const rainLimit = 0.1;
+
 const renderRainIfEnough = (forecast) => {
-  if (_.get(forecast, 'rain.3h') > 0.1) {
+  if (_.get(forecast, 'rain.3h') > rainLimit) {
     return require('../images/Cloud-Rain.svg');
   }
 
@@ -31,7 +33,7 @@ const renderRainIfEnough = (forecast) => {
 };
 
 const renderSnowIfEnough = (forecast) => {
-  if (_.get(forecast, 'snow.3h') > 0.1) {
+  if (_.get(forecast, 'snow.3h') > rainLimit) {
     return require('../images/Cloud-Snow.svg');
   }
 

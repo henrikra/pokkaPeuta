@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import * as actions from '../actions';
 import Loader from './Loader';
-import { getTemperature, isToday } from '../utils/weather';
+import { getTemperature, isToday, rainLimit } from '../utils/weather';
 import SelectedWeatherList from './SelectedWeatherList';
 
 const styles = StyleSheet.create({
@@ -38,9 +38,9 @@ const getDescription = (forecast) => {
   const description = _.get(forecast, 'weather[0].main');
 
   if (description === 'Rain') {
-    return _.get(forecast, 'rain.3h') > 0.1 ? 'Rain' : 'Clouds';
+    return _.get(forecast, 'rain.3h') > rainLimit ? 'Rain' : 'Clouds';
   } else if (description === 'Snow') {
-    return _.get(forecast, 'snow.3h') > 0.1 ? 'Snow' : 'Clouds';
+    return _.get(forecast, 'snow.3h') > rainLimit ? 'Snow' : 'Clouds';
   }
 
   return description;
