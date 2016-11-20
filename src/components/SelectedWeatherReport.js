@@ -34,6 +34,18 @@ const styles = StyleSheet.create({
   },
 });
 
+const getDescription = (forecast) => {
+  const description = _.get(forecast, 'weather[0].main');
+
+  if (description === 'Rain') {
+    return _.get(forecast, 'rain.3h') > 0.1 ? 'Rain' : 'Clouds';
+  } else if (description === 'Snow') {
+    return _.get(forecast, 'snow.3h') > 0.1 ? 'Snow' : 'Clouds';
+  }
+
+  return description;
+};
+
 class SelectedWeatherReport extends Component {
   componentDidMount() {
     this.props.fetchLocation();
@@ -58,7 +70,7 @@ class SelectedWeatherReport extends Component {
       <View style={styles.container}>
         {isToday(selectedForecast) && (
           <View style={styles.infoContainer}>
-            <Text style={styles.description}>{bigForecast.weather[0].main}</Text>
+            <Text style={styles.description}>{getDescription(bigForecast)}</Text>
             <Text style={styles.temperature}>{getTemperature(bigForecast.main.temp)}&deg;</Text>
           </View>
         )}
